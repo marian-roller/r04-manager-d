@@ -1,0 +1,6 @@
+status:
+initial docker new app setup with postgres
+Gemfile:
+commented: 'jbuilder'
+added: gem 'bootstrap', gem 'devise'
+devise setup
