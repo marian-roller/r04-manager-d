@@ -1,57 +1,79 @@
-<%= form_with(model: movie, local: true) do |form| %>
-  <% if movie.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+<%= form_with(model: movie, local: true)  do |form| %>
+  <div>
 
-      <ul>
-        <% movie.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <% if movie.errors.any? %>
+
+      <div id="error_explanation" class="bg-danger text-light p-2">
+
+          <div class="font-weight-bold"><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</div>
+
+          <ul>
+            <% movie.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+
+      </div>
+
+    <% end %>
+
+    <div class="car-body">
+      <div class="row p-3">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+
+          <div class="field form-group mb-4" >
+            <%= form.label :title, class: 'font-weight-bold text-muted small' %>
+
+            <%= form.text_field :title, class: 'form-control form-control-sm' %>
+          </div>
+
+          <div class="field form-group mb-4">
+            <%= form.label :original_title, class: 'font-weight-bold text-muted small' %>
+            <%= form.text_field :original_title, class: 'form-control form-control-sm' %>
+          </div>
+
+          <div class="field form-group mb-4">
+            <%= form.label :movie_type, class: 'font-weight-bold text-muted small' %>
+            <%= select_tag('movie[movie_type]', options_for_select([['Movie', 1], ['Tv serie', 2]], movie.movie_type ) , class: 'form-control form-control-sm', :prompt => "-- Choose type --")  %>
+          </div>
+
+          <div class="field form-group mb-4">
+            <%= form.label :description, class: 'font-weight-bold text-muted small' %>
+            <%= form.text_area :description, class: 'form-control form-control-sm' %>
+          </div>
+
+          <div class="field form-group mb-4">
+            <%= form.label :year_start, class: 'font-weight-bold text-muted small' %>
+            <%= form.number_field :year_start, class: 'form-control form-control-sm' %>
+          </div>
+
+          <div class="field form-group mb-4">
+            <%= form.label :year_end, class: 'font-weight-bold text-muted small' %>
+            <%= form.number_field :year_end, class: 'form-control form-control-sm' %>
+          </div>
+
+          <div class="field form-group mb-4">
+            <%= form.label :duration, "Duration (minutes)", class: 'font-weight-bold text-muted small' %>
+            <%= form.number_field :duration, class: 'form-control form-control-sm' %>
+          </div>
+
+
+        </div>
+      </div>
+
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="card-footer text-center">
+      <div class="actions">
+        <%= form.submit class: 'btn btn-info btn-block' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :original_title %>
-    <%= form.text_field :original_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :movie_type %>
-    <%= form.number_field :movie_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ranking_avg %>
-    <%= form.text_field :ranking_avg %>
-  </div>
-
-  <div class="field">
-    <%= form.label :year_start %>
-    <%= form.number_field :year_start %>
-  </div>
-
-  <div class="field">
-    <%= form.label :year_end %>
-    <%= form.number_field :year_end %>
-  </div>
-
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.number_field :duration %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
+
+
+
