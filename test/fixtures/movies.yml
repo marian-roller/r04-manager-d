@@ -3,7 +3,7 @@
 one:
   title: MyString
   original_title: MyString
-  type: 1
+  movie_type: 1
   description: MyText
   ranking_avg: 9.99
   year_start: 1
@@ -13,7 +13,7 @@ one:
 two:
   title: MyString
   original_title: MyString
-  type: 1
+  movie_type: 1
   description: MyText
   ranking_avg: 9.99
   year_start: 1
