@@ -19,7 +19,7 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Original title", with: @movie.original_title
     fill_in "Ranking avg", with: @movie.ranking_avg
     fill_in "Title", with: @movie.title
-    fill_in "Type", with: @movie.type
+    fill_in "Type", with: @movie.movie_type
     fill_in "Year end", with: @movie.year_end
     fill_in "Year start", with: @movie.year_start
     click_on "Create Movie"
@@ -37,7 +37,7 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Original title", with: @movie.original_title
     fill_in "Ranking avg", with: @movie.ranking_avg
     fill_in "Title", with: @movie.title
-    fill_in "Type", with: @movie.type
+    fill_in "Type", with: @movie.movie_type
     fill_in "Year end", with: @movie.year_end
     fill_in "Year start", with: @movie.year_start
     click_on "Update Movie"
