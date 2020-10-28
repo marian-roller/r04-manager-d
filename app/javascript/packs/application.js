@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("movies/form.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -15,23 +16,3 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-
-document.addEventListener('turbolinks:load', () => {
-
-    function renderFieldsUponMovieType() {
-        if (document.getElementById('movie-form')) {
-            const type = document.getElementById('movie_movie_type');
-            const year_end = document.getElementById('year-end-field-group');
-
-            if (type.value != 2) {
-                year_end.classList.add('d-none')
-                // year_end.classList.remove('d-none')
-                // if (!year_end) return;
-            }
-        }
-    }
-
-    renderFieldsUponMovieType();
-
-})
