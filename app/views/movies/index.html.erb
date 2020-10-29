@@ -1,39 +1,63 @@
-<h1>Movies</h1>
+<div class="card mt-3 mb-5">
+  <div class="d-flex justify-content-between align-items-center card-header">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Original title</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Ranking avg</th>
-      <th>Year start</th>
-      <th>Year end</th>
-      <th>Duration</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div>
+      <h1>Movies</h1>
+    </div>
 
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.original_title %></td>
-        <td><%= movie.movie_type %></td>
-        <td><%= movie.description %></td>
-        <td><%= movie.ranking_avg %></td>
-        <td><%= movie.year_start %></td>
-        <td><%= movie.year_end %></td>
-        <td><%= movie.duration %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to 'New Movie', new_movie_path, class: 'btn btn-info btn-sm' %>
+      <% end %>
+    </div>
 
-<br>
+  </div>
 
-<%= link_to 'New Movie', new_movie_path %>
+  <div class="card-body">
+    <div class="row p-3">
+
+      <table class="table table-bordered table-hover table-sm table-responsive-md">
+        <thead>
+        <tr  class="d-flex">
+          <th class="col-3">Title</th>
+          <th class="col-2">Original title</th>
+          <th class="col-1">Type</th>
+          <th class="col-1">Ranking</th>
+          <th class="col-1">Year start</th>
+          <th class="col-1">Year end</th>
+          <th class="col-3" colspan="3"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @movies.each do |movie| %>
+          <tr  class="d-flex">
+            <td class="col-3"><%= movie.title %></td>
+            <td class="col-2"><%= movie.original_title %></td>
+            <td class="col-1"><%= movie.movie_type %></td>
+            <td class="col-1"><%= movie.ranking_avg %></td>
+            <td class="col-1"><%= movie.year_start %></td>
+            <td class="col-1"><%= movie.year_end %></td>
+            <td class="col-3 text-center"><%= link_to 'Show', movie, class: 'btn btn-info btn-sm' %>
+            <% if user_signed_in? %>
+              <%= link_to 'Edit', edit_movie_path(movie), class: 'btn btn-secondary btn-sm' %>
+              <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
