@@ -1,8 +1,17 @@
 <div class="card mt-3 mb-5">
   <div class="d-flex justify-content-between align-items-center card-header">
 
-    <div>
-      <h1>Movies</h1>
+    <div class="movies-selector d-flex align-items-center">
+      <div>
+        <%= link_to movies_path, class: "btn btn-info mx-3 #{'active' if @allmovies}", :action => 'go' do %>
+          <h1>All movies</h1>
+        <% end %>
+      </div>
+      <div class="ml-5">
+        <%= link_to 'Movies', onlymovies_path,
+                    class: "btn btn-info btn-sm mx-3 my-1 #{'active' if @onlymovies}" %>
+        <%= link_to 'Tv series', onlytvseries_path, class: "btn btn-info btn-sm mx-3 my-1 #{'active' if @onlytvseries}" %>
+      </div>
     </div>
 
     <div>

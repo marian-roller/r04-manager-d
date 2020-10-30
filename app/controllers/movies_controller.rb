@@ -5,6 +5,19 @@ class MoviesController < ApplicationController
   # GET /movies
   def index
     @movies = Movie.all
+    @allmovies = true
+  end
+
+  def onlyMovies
+    @movies = Movie.where(movie_type: '1').all
+    @onlymovies = true
+    render :index
+  end
+
+  def onlyTvseries
+    @movies = Movie.where(movie_type: '2').all
+    @onlytvseries = true
+    render :index
   end
 
   # GET /movies/1
