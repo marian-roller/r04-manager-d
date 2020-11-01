@@ -4,18 +4,20 @@ class MoviesController < ApplicationController
 
   # GET /movies
   def index
-    @movies = Movie.all
+    @movies = Movie.order('title').all
     @allmovies = true
   end
 
+  # GET /onlymovies
   def onlyMovies
-    @movies = Movie.where(movie_type: '1').all
+    @movies = Movie.where(movie_type: '1').order('title').all
     @onlymovies = true
     render :index
   end
 
+  # GET /onlytvseries
   def onlyTvseries
-    @movies = Movie.where(movie_type: '2').all
+    @movies = Movie.where(movie_type: '2').order('title').all
     @onlytvseries = true
     render :index
   end
