@@ -17,7 +17,6 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Description", with: @movie.description
     fill_in "Duration", with: @movie.duration
     fill_in "Original title", with: @movie.original_title
-    fill_in "Ranking avg", with: @movie.ranking_avg
     fill_in "Title", with: @movie.title
     fill_in "Type", with: @movie.movie_type
     fill_in "Year end", with: @movie.year_end
@@ -35,7 +34,6 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Description", with: @movie.description
     fill_in "Duration", with: @movie.duration
     fill_in "Original title", with: @movie.original_title
-    fill_in "Ranking avg", with: @movie.ranking_avg
     fill_in "Title", with: @movie.title
     fill_in "Type", with: @movie.movie_type
     fill_in "Year end", with: @movie.year_end
