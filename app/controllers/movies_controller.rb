@@ -38,6 +38,8 @@ class MoviesController < ApplicationController
   # POST /movies
   def create
     @movie = Movie.new(movie_params)
+    @movie.added_by = current_user
+    @movie.updated_by = current_user
 
     if @movie.save
       redirect_to @movie, notice: 'Movie was successfully created.'
@@ -48,6 +50,7 @@ class MoviesController < ApplicationController
 
   # PATCH/PUT /movies/1
   def update
+    @movie.updated_by = current_user
     if @movie.update(movie_params)
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
