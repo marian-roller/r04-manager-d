@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_181301) do
+ActiveRecord::Schema.define(version: 2020_11_01_103800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2020_10_26_181301) do
     t.string "title", null: false
     t.string "original_title"
     t.text "description"
-    t.decimal "ranking_avg", precision: 2, scale: 1
     t.integer "year_start", limit: 2
     t.integer "year_end", limit: 2
     t.integer "duration", limit: 2

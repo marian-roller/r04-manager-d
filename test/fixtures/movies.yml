@@ -5,7 +5,6 @@ one:
   original_title: MyString
   movie_type: 1
   description: MyText
-  ranking_avg: 9.99
   year_start: 1
   year_end: 1
   duration: 1
@@ -15,7 +14,6 @@ two:
   original_title: MyString
   movie_type: 1
   description: MyText
-  ranking_avg: 9.99
   year_start: 1
   year_end: 1
   duration: 1
