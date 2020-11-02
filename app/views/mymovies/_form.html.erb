@@ -1,0 +1,72 @@
+<%= form_with(model: mymovie, local: true) do |form| %>
+  <% if mymovie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mymovie.errors.count, "error") %> prohibited this mymovie from being saved:</h2>
+
+      <ul>
+        <% mymovie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :movie_id %>
+    <%= form.text_field :movie_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :impression %>
+    <%= form.text_area :impression %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :urgent %>
+    <%= form.check_box :urgent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :watching_start %>
+    <%= form.datetime_select :watching_start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :watching_end %>
+    <%= form.datetime_select :watching_end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :times_watched %>
+    <%= form.number_field :times_watched %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ranking %>
+    <%= form.number_field :ranking %>
+  </div>
+
+  <div class="field">
+    <%= form.label :watching_season %>
+    <%= form.number_field :watching_season %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_episode %>
+    <%= form.number_field :last_episode %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

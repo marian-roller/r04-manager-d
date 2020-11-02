@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Movie:</strong>
+  <%= @mymovie.movie_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mymovie.user_id %>
+</p>
+
+<p>
+  <strong>Impression:</strong>
+  <%= @mymovie.impression %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @mymovie.status %>
+</p>
+
+<p>
+  <strong>Urgent:</strong>
+  <%= @mymovie.urgent %>
+</p>
+
+<p>
+  <strong>Watching start:</strong>
+  <%= @mymovie.watching_start %>
+</p>
+
+<p>
+  <strong>Watching end:</strong>
+  <%= @mymovie.watching_end %>
+</p>
+
+<p>
+  <strong>Times watched:</strong>
+  <%= @mymovie.times_watched %>
+</p>
+
+<p>
+  <strong>Ranking:</strong>
+  <%= @mymovie.ranking %>
+</p>
+
+<p>
+  <strong>Watching season:</strong>
+  <%= @mymovie.watching_season %>
+</p>
+
+<p>
+  <strong>Last episode:</strong>
+  <%= @mymovie.last_episode %>
+</p>
+
+<%= link_to 'Edit', edit_mymovie_path(@mymovie) %> |
+<%= link_to 'Back', mymovies_path %>

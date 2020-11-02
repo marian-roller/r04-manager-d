@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mymovies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Movie</th>
+      <th>User</th>
+      <th>Impression</th>
+      <th>Status</th>
+      <th>Urgent</th>
+      <th>Watching start</th>
+      <th>Watching end</th>
+      <th>Times watched</th>
+      <th>Ranking</th>
+      <th>Watching season</th>
+      <th>Last episode</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mymovies.each do |mymovie| %>
+      <tr>
+        <td><%= mymovie.movie_id %></td>
+        <td><%= mymovie.user_id %></td>
+        <td><%= mymovie.impression %></td>
+        <td><%= mymovie.status %></td>
+        <td><%= mymovie.urgent %></td>
+        <td><%= mymovie.watching_start %></td>
+        <td><%= mymovie.watching_end %></td>
+        <td><%= mymovie.times_watched %></td>
+        <td><%= mymovie.ranking %></td>
+        <td><%= mymovie.watching_season %></td>
+        <td><%= mymovie.last_episode %></td>
+        <td><%= link_to 'Show', mymovie %></td>
+        <td><%= link_to 'Edit', edit_mymovie_path(mymovie) %></td>
+        <td><%= link_to 'Destroy', mymovie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mymovie', new_mymovie_path %>

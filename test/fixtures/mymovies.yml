@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  user: one
+  impression: MyText
+  status: 1
+  urgent: false
+  watching_start: 2020-11-02 19:52:24
+  watching_end: 2020-11-02 19:52:24
+  times_watched: 1
+  ranking: 1
+  watching_season: 1
+  last_episode: 1
+
+two:
+  movie: two
+  user: two
+  impression: MyText
+  status: 1
+  urgent: false
+  watching_start: 2020-11-02 19:52:24
+  watching_end: 2020-11-02 19:52:24
+  times_watched: 1
+  ranking: 1
+  watching_season: 1
+  last_episode: 1
