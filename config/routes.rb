@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mymovies
   resources :movies
   get 'onlymovies', to: 'movies#onlyMovies'
   get 'onlytvseries', to: 'movies#onlyTvseries'

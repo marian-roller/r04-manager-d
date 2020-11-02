@@ -8,6 +8,11 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
         <%= link_to "Movies", movies_path, class: 'nav-item nav-link' %>
+
+        <% if user_signed_in? %>
+          <%= link_to "My movies", mymovies_path, class: 'nav-item nav-link' %>
+        <% end %>
+
       </div>
 
       <div class="navbar-nav ml-auto">
