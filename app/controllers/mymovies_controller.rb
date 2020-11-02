@@ -1,9 +1,10 @@
 class MymoviesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_mymovie, only: [:show, :edit, :update, :destroy]
 
   # GET /mymovies
   def index
-    @mymovies = Mymovie.all
+    @mymovies = current_user.mymovies
   end
 
   # GET /mymovies/1
@@ -12,7 +13,7 @@ class MymoviesController < ApplicationController
 
   # GET /mymovies/new
   def new
-    @mymovie = Mymovie.new
+    @mymovie = current_user.mymovies.build
   end
 
   # GET /mymovies/1/edit
@@ -21,8 +22,7 @@ class MymoviesController < ApplicationController
 
   # POST /mymovies
   def create
-    @mymovie = Mymovie.new(mymovie_params)
-
+    @mymovie = current_user.mymovies.build(mymovie_params)
     if @mymovie.save
       redirect_to @mymovie, notice: 'Mymovie was successfully created.'
     else
@@ -48,7 +48,7 @@ class MymoviesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mymovie
-      @mymovie = Mymovie.find(params[:id])
+      @mymovie = current_user.mymovies.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
