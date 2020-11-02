@@ -16,11 +16,6 @@
     <%= form.collection_select(:movie_id, Movie.all, :id, :title) %>
   </div>
 
-<!--  <div class="field">-->
-    <%#= form.label :user_id %>
-    <%#= form.text_field :user_id %>
-<!--  </div>-->
-
   <div class="field">
     <%= form.label :impression %>
     <%= form.text_area :impression %>

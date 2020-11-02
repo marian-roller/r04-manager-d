@@ -5,6 +5,7 @@ class MymoviesController < ApplicationController
   # GET /mymovies
   def index
     @mymovies = current_user.mymovies
+    @allmymovies = true
   end
 
   # GET /mymovies/1
