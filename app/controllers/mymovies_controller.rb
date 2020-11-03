@@ -4,8 +4,15 @@ class MymoviesController < ApplicationController
 
   # GET /mymovies
   def index
-    @mymovies = current_user.mymovies
+    # @mymovies = current_user.mymovies.where(urgent: TRUE)
+    @mymovies = current_user.mymovies.joins("INNER JOIN movies ON movies.id = mymovies.movie_id AND movies.movie_type = 1")
     @allmymovies = true
+  end
+
+  def myTvseries
+    @mymovies = current_user.mymovies.joins("INNER JOIN movies ON movies.id = mymovies.movie_id AND movies.movie_type = 2")
+    @allmytvseries = true
+    render :index
   end
 
   # GET /mymovies/1
