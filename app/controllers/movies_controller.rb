@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.order('title').all
     @allmovies = true
+    @mymovie = Mymovie.new
   end
 
   # GET /onlymovies
