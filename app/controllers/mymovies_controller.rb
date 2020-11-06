@@ -15,6 +15,25 @@ class MymoviesController < ApplicationController
     render :index
   end
 
+  def setDuring
+    @mymovie = Mymovie.find(mymovie_params[:id])
+    @mymovie.status = mymovie_params[:status]
+    @mymovie.save
+    redirect_to mymovies_url
+  end
+
+  def setDropped
+
+  end
+
+  def setBefore
+
+  end
+
+  def setAfter
+
+  end
+
   # GET /mymovies/1
   def show
   end
@@ -61,6 +80,6 @@ class MymoviesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def mymovie_params
-      params.require(:mymovie).permit(:movie_id, :user_id, :impression, :status, :urgent, :watching_start, :watching_end, :times_watched, :ranking, :watching_season, :last_episode)
+      params.require(:mymovie).permit(:id, :movie_id, :user_id, :impression, :status, :urgent, :watching_start, :watching_end, :times_watched, :ranking, :watching_season, :last_episode)
     end
 end
