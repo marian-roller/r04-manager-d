@@ -21,25 +21,30 @@
 
   </div>
   <div class="card-body">
-    <div class="">
-      <div>
-        <% @mymovies.each do |mymovie| %>
-          <div class="d-flex justify-content-between">
-            <div class="d-flex">
-              <div class="mr-3"><%= mymovie.movie.title %></div>
-              <div class="mr-3"><%= mymovie.status %></div>
-              <div class="mr-3"><%= mymovie.urgent %></div>
-              <div class="mr-3"><%= mymovie.watching_season %></div>
-              <div class="mr-3"><%= mymovie.last_episode %></div>
-            </div>
-            <div>
-              <%= link_to 'Show', mymovie, class: 'btn btn-info btn-sm' %>
-              <%= link_to 'Edit', edit_mymovie_path(mymovie), class: 'btn btn-secondary btn-sm' %>
-              <%= link_to 'Destroy', mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-            </div>
-          </div>
-          <hr>
-        <% end %>
+    <div class="row">
+      <div class="col-md-6">
+
+        <div>
+          <h2>Before</h2>
+          <%= render partial: 'status_before', collection: @before = @mymovies.where(status: '1'), as: :mymovie %>
+        </div>
+
+        <div>
+          <h2>During</h2>
+          <%= render partial: 'status_during', collection: @during = @mymovies.where(status: '2'), as: :mymovie %>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div>
+          <h2>After</h2>
+          <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '4'), as: :mymovie %>
+        </div>
+
+        <div>
+          <h2>Dropped</h2>
+          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '3'), as: :mymovie %>
+        </div>
       </div>
 
     </div>
