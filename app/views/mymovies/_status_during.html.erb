@@ -1,17 +1,32 @@
-<div>
+<div class="card-body border border-dark my-1">
   <div class="d-flex justify-content-between">
     <div class="d-flex">
-      <div class="mr-3"><%= mymovie.movie.title %></div>
-      <div class="mr-3"><%= mymovie.status %></div>
-      <div class="mr-3"><%= mymovie.urgent %></div>
-      <div class="mr-3"><%= mymovie.watching_season %></div>
-      <div class="mr-3"><%= mymovie.last_episode %></div>
+      <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
     </div>
     <div>
-      <%= link_to 'Show', mymovie, class: 'btn btn-info btn-sm' %>
-      <%= link_to 'Edit', edit_mymovie_path(mymovie), class: 'btn btn-secondary btn-sm' %>
-      <%= link_to 'Destroy', mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+
+      <%= form_for mymovie, url: resetStatus_mymovie_path(mymovie), method: :put do |form|%>
+        <div class="field">
+          <%= form.hidden_field :status, :value => "4" %>
+          <%= form.hidden_field :id, :value => mymovie.id %>
+        </div>
+        <div>
+          <%= form.submit "Drop", class: 'btn btn-dark btn-sm' %>
+        </div>
+      <% end %>
+
     </div>
   </div>
-  <hr>
+
+  <% if mymovie.movie.movie_type == 2 %>
+    <div>
+      <p>Sezony</p>
+      <!--      <div class="mr-3"><%#= mymovie.watching_season %></div>-->
+      <!--      <div class="mr-3"><%#= mymovie.last_episode %></div>-->
+    </div>
+
+  <% else %>
+
+    <p>Czas</p>
+  <% end %>
 </div>

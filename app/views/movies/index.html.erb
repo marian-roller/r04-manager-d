@@ -66,6 +66,7 @@
                   <%= form_with(model: @mymovie, local: true) do |form| %>
                     <div class="field">
                       <%= form.hidden_field :movie_id, :value => movie.id %>
+                      <%= form.hidden_field :status, :value => "1" %>
                     </div>
                     <div>
                       <%= form.submit "Add to my list", class: 'my-1 btn btn-primary btn-sm btn-block' %>
