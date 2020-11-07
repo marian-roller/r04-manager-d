@@ -9,3 +9,11 @@
 .my-movies-card-body {
   background: #eaf7b7;
 }
+
+.during-mymovies {
+  margin-bottom: 5px;
+  border: 3px solid green;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

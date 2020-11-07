@@ -61,15 +61,20 @@
             <%= @mymovie.urgent %>
           </div>
 
-          <div>
-            <strong>Watching start:</strong>
-            <%= @mymovie.watching_start.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
-          </div>
+          <% if @mymovie.watching_start %>
+            <div>
+              <strong>Watching start:</strong>
+              <%= @mymovie.watching_start.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
+            </div>
+          <% end %>
 
-          <div>
-            <strong>Watching end:</strong>
-            <%= @mymovie.watching_end.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
-          </div>
+          <% if @mymovie.watching_end %>
+            <div>
+              <strong>Watching end:</strong>
+              <%= @mymovie.watching_end.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
+            </div>
+          <% end %>
+
 
           <div>
             <strong>Times watched:</strong>
