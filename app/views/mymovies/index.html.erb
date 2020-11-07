@@ -30,6 +30,9 @@
           </div>
           <div class="">
             <%= render partial: 'status_during', collection: @during = @mymovies.where(status: '2'), as: :mymovie %>
+            <% if @during.size == 0 %>
+              <div class="card-body"><small>Empty</small></div>
+            <% end %>
           </div>
         </div>
 
@@ -39,6 +42,9 @@
           </div>
             <div class="">
               <%= render partial: 'status_before', collection: @before = @mymovies.where(status: '1'), as: :mymovie %>
+              <% if @before.size == 0 %>
+                <div class="card-body"><small>Empty</small></div>
+              <% end %>
             </div>
         </div>
 
@@ -51,6 +57,9 @@
           </div>
           <div class="">
             <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '3'), as: :mymovie %>
+            <% if @after.size == 0 %>
+              <div class="card-body"><small>Empty</small></div>
+            <% end %>
           </div>
         </div>
 
@@ -58,9 +67,10 @@
           <div class="card-header">
             <h5>Dropped</h5>
           </div>
-          <div class="">
-            <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '4'), as: :mymovie %>
-          </div>
+          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '4'), as: :mymovie %>
+          <% if @dropped.size == 0 %>
+            <div class="card-body"><small>Empty</small></div>
+          <% end %>
         </div>
       </div>
 
