@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
   def onlyMovies
     @movies = Movie.where(movie_type: '1').order('title').all
     @onlymovies = true
+    @mymovie = Mymovie.new
     render :index
   end
 
@@ -20,6 +21,7 @@ class MoviesController < ApplicationController
   def onlyTvseries
     @movies = Movie.where(movie_type: '2').order('title').all
     @onlytvseries = true
+    @mymovie = Mymovie.new
     render :index
   end
 

@@ -1,6 +1,6 @@
 class MymoviesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_mymovie, only: [:show, :edit, :update, :destroy]
+  before_action :set_mymovie, only: [:show, :edit, :update, :destroy, :resetStatus]
 
   # GET /mymovies
   def index
@@ -15,23 +15,15 @@ class MymoviesController < ApplicationController
     render :index
   end
 
-  def setDuring
-    @mymovie = Mymovie.find(mymovie_params[:id])
-    @mymovie.status = mymovie_params[:status]
-    @mymovie.save
-    redirect_to mymovies_url
-  end
+  def resetStatus
+    @mymovie.update(mymovie_params)
 
-  def setDropped
-
-  end
-
-  def setBefore
-
-  end
-
-  def setAfter
-
+    if @mymovie.movie.movie_type == 2
+      @allmytvseries = true
+      redirect_to myonlytvseries_url
+    else
+      redirect_to mymovies_url
+    end
   end
 
   # GET /mymovies/1

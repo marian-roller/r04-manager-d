@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # resources :mymovies
   resources :mymovies do
     member do
-      put :setDuring
+      put :resetStatus
     end
   end
   get 'myonlymovies', to: 'mymovies#index'

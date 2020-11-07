@@ -10,7 +10,7 @@
 
     <div>
 
-      <%= form_for mymovie, url: setDuring_mymovie_path(mymovie), method: :put do |form|%>
+      <%= form_for mymovie, url: resetStatus_mymovie_path(mymovie), method: :put do |form|%>
         <div class="field">
           <%= form.hidden_field :status, :value => "2" %>
           <%= form.hidden_field :id, :value => mymovie.id %>

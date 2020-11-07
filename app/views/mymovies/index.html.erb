@@ -38,12 +38,12 @@
       <div class="col-md-6">
         <div>
           <h2>After</h2>
-          <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '4'), as: :mymovie %>
+          <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '3'), as: :mymovie %>
         </div>
 
         <div>
           <h2>Dropped</h2>
-          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '3'), as: :mymovie %>
+          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '4'), as: :mymovie %>
         </div>
       </div>
 

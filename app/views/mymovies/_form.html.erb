@@ -21,10 +21,7 @@
     <%= form.text_area :impression %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
+  <%= form.hidden_field :status, :value => "1" %>
 
   <div class="field">
     <%= form.label :urgent %>
