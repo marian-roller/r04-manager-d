@@ -57,3 +57,4 @@
 
 <%= link_to 'Edit', edit_mymovie_path(@mymovie) %> |
 <%= link_to 'Back', mymovies_path %>
+<%= link_to 'Destroy', @mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>

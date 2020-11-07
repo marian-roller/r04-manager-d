@@ -1,16 +1,16 @@
 <div id="movies-index-page" class="card mt-3 mb-5">
-  <div class="d-flex justify-content-between align-items-center card-header">
+  <div class="d-flex justify-content-between align-items-center card-header my-movies-card-header">
 
     <div class="movies-selector d-flex align-items-center">
       <div>
         <%= link_to mymovies_path,
                     class: "btn btn-info my-1 mx-5 #{'btn-sm' unless @allmymovies} #{'active font-weight-bold border-button' if @allmymovies}", :action => 'go' do %>
-          <h1 class="<%= 'font-weight-bold' if @allmymovies %> h6 m-0 movie-button  >">Movies</h1>
+          <h1 class="<%= 'font-weight-bold' if @allmymovies %> h6 m-0 movie-button  >">My movies</h1>
         <% end %>
       </div>
 
       <div>
-        <%= link_to "Tvseries", myonlytvseries_path,
+        <%= link_to "My tvseries", myonlytvseries_path,
                     class: "btn btn-info my-1 mx-5 #{'btn-sm' unless @allmytvseries} #{'active font-weight-bold border-button' if @allmytvseries}", :action => 'go' %>
       </div>
     </div>
@@ -20,30 +20,47 @@
     </div>
 
   </div>
-  <div class="card-body">
+  <div class="card-body my-movies-card-body">
     <div class="row">
       <div class="col-md-6">
 
-        <div>
-          <h2>Before</h2>
-          <%= render partial: 'status_before', collection: @before = @mymovies.where(status: '1'), as: :mymovie %>
+        <div class="card mb-5 ">
+          <div class="card-header">
+            <h5>Watching now</h5>
+          </div>
+          <div class="">
+            <%= render partial: 'status_during', collection: @during = @mymovies.where(status: '2'), as: :mymovie %>
+          </div>
         </div>
 
-        <div>
-          <h2>During</h2>
-          <%= render partial: 'status_during', collection: @during = @mymovies.where(status: '2'), as: :mymovie %>
+        <div class="card mb-5">
+          <div class="card-header">
+            <h5>Waiting list</h5>
+          </div>
+            <div class="">
+              <%= render partial: 'status_before', collection: @before = @mymovies.where(status: '1'), as: :mymovie %>
+            </div>
         </div>
 
       </div>
+
       <div class="col-md-6">
-        <div>
-          <h2>After</h2>
-          <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '3'), as: :mymovie %>
+        <div class="card mb-5">
+          <div class="card-header">
+            <h5>After</h5>
+          </div>
+          <div class="">
+            <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '3'), as: :mymovie %>
+          </div>
         </div>
 
-        <div>
-          <h2>Dropped</h2>
-          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '4'), as: :mymovie %>
+        <div class="card mb-5">
+          <div class="card-header">
+            <h5>Dropped</h5>
+          </div>
+          <div class="">
+            <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '4'), as: :mymovie %>
+          </div>
         </div>
       </div>
 
