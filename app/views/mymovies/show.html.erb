@@ -1,60 +1,116 @@
-<p id="notice"><%= notice %></p>
+<div id="mymovies-show-page" class=" card mt-3 mb-5">
+  <div class="d-flex justify-content-between align-items-center card-header">
 
-<p>
-  <strong>Movie:</strong>
-  <%= @mymovie.movie_id %>
-</p>
+    <div>
+      <%= link_to @mymovie.movie, class: '' do %>
+        <h1> <%= @mymovie.movie.title %></h1>
+      <% end %>
+    </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @mymovie.user_id %>
-</p>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to 'Edit', edit_mymovie_path(@mymovie), class: 'btn btn-info btn-sm' %>
+      <% end %>
+      <%= link_to 'Back', mymovies_path, class: 'btn btn-secondary btn-sm' %>
+      <%= link_to 'Destroy', @mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+    </div>
 
-<p>
-  <strong>Impression:</strong>
-  <%= @mymovie.impression %>
-</p>
+  </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @mymovie.status %>
-</p>
+  <div class="card-body">
+    <div class="row p-3">
+      <div class="col-md-6">
+      </div>
 
-<p>
-  <strong>Urgent:</strong>
-  <%= @mymovie.urgent %>
-</p>
+      <div class="col-md-6">
+        <div class="bg-light p-2 border border-dark mb-2">
+          <div>
+            <%= @mymovie.movie.original_title %>
+          </div>
 
-<p>
-  <strong>Watching start:</strong>
-  <%= @mymovie.watching_start %>
-</p>
+          <div>
+            <% if @mymovie.movie.movie_type == 1 %>
+              <small>movie</small>
+            <% else %>
+              <small>tvserie</small>
+            <% end %>
+          </div>
 
-<p>
-  <strong>Watching end:</strong>
-  <%= @mymovie.watching_end %>
-</p>
+          <div>
+            <%= "8,7" %>
+          </div>
 
-<p>
-  <strong>Times watched:</strong>
-  <%= @mymovie.times_watched %>
-</p>
+          <div>
+            <%= "#{@mymovie.movie.year_start}" + "#{' - ' if @mymovie.movie.movie_type == 2 }"  + "#{@mymovie.movie.year_end}" %>
+          </div>
 
-<p>
-  <strong>Ranking:</strong>
-  <%= @mymovie.ranking %>
-</p>
+          <div>
+            <%= "#{@mymovie.movie.duration}" + " min"%>
+          </div>
+        </div>
 
-<p>
-  <strong>Watching season:</strong>
-  <%= @mymovie.watching_season %>
-</p>
+        <div class="p-2">
 
-<p>
-  <strong>Last episode:</strong>
-  <%= @mymovie.last_episode %>
-</p>
+          <div>
+            <strong>Status:</strong>
+            <%= @mymovie.status %>
+          </div>
 
-<%= link_to 'Edit', edit_mymovie_path(@mymovie) %> |
-<%= link_to 'Back', mymovies_path %>
-<%= link_to 'Destroy', @mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <div>
+            <strong>Urgent:</strong>
+            <%= @mymovie.urgent %>
+          </div>
+
+          <% if @mymovie.watching_start %>
+            <div>
+              <strong>Watching start:</strong>
+              <%= @mymovie.watching_start.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
+            </div>
+          <% end %>
+
+          <% if @mymovie.watching_end %>
+            <div>
+              <strong>Watching end:</strong>
+              <%= @mymovie.watching_end.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
+            </div>
+          <% end %>
+
+
+          <div>
+            <strong>Times watched:</strong>
+            <%= @mymovie.times_watched %>
+          </div>
+
+          <div>
+            <strong>My ranking:</strong>
+            <%= @mymovie.ranking %>
+          </div>
+
+          <div>
+            <strong>Watching season:</strong>
+            <%= @mymovie.watching_season %>
+          </div>
+
+          <div>
+            <strong>Last episode:</strong>
+            <%= @mymovie.last_episode %>
+          </div>
+
+          <div>
+            <strong>Impressions:</strong>
+            <%= @mymovie.impression %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
