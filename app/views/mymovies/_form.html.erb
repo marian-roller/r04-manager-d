@@ -23,11 +23,21 @@
 
             <div class="field form-group mb-4">
               <%= form.label :movie_id, class: 'font-weight-bold text-muted small' %>
-              <%= form.collection_select(:movie_id, Movie.all, :id, :title, {:prompt=> "-- Choose the movie --"}, {:class=>'form-control form-control-sm'}) %>
+
+              <select name="mymovie[movie_id]" id="mymovie_movie_id" class="form-control form-control-sm">
+              <option value="">-- Choose the movie --</option>
+                <% Movie.all.each do |movie| %>
+                  <option
+                    <%= "#{'selected' if mymovie.movie and movie.id == mymovie.movie.id }" %>
+                    value="<%= movie.id %>" data-type="<%= movie.movie_type %>"><%= movie.title %>
+                  </option>
+                <% end %>
+              </select>
             </div>
 
-<!--            warunek na nowy / edytowany, żeby się nie resetowało przy updacie-->
-            <%= form.hidden_field :status, :value => "1" %>
+            <% if !mymovie.movie %>
+              <%= form.hidden_field :status, :value => "1" %>
+            <% end %>
 
             <div class="field form-group mb-4">
               <%= form.check_box :urgent %>

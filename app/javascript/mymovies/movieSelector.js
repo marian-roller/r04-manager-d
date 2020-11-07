@@ -6,12 +6,14 @@ export class MovieSelector {
         this.watching_season = document.getElementById('watching-season-field-group');
         this.last_episode = document.getElementById('last-episode-field-group');
         this.renderFieldsUponSelectedMovieType();
+        this.renderFiledsUponSelectedMovieTypeChange();
         this.movie.addEventListener('change', (e) => {
-            return this.renderFiledsUponSelectedMovieTypeChange(e.target.value);
+            return this.renderFiledsUponSelectedMovieTypeChange();
         })
     }
 
-    renderFiledsUponSelectedMovieTypeChange(value) {
+    // render onchange selector
+    renderFiledsUponSelectedMovieTypeChange() {
         if (!this.renderFieldsUponSelectedMovieType()) {
             this.watching_end.classList.remove('input-wrapper-open');
             this.watching_end.classList.add('input-wrapper-closed');
@@ -22,8 +24,10 @@ export class MovieSelector {
         }
     }
 
+    // render onload form
     renderFieldsUponSelectedMovieType() {
-        if (this.movie.value == 47) {
+        // if tvserie
+        if (this.movie.options[this.movie.selectedIndex].getAttribute('data-type') == 2) {
             this.watching_end.classList.remove('input-wrapper-closed');
             this.watching_end.classList.add('input-wrapper-open');
             this.watching_season.classList.remove('input-wrapper-closed');
