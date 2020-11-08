@@ -43,12 +43,12 @@
 
             <div class="field form-group mb-4" id="year-start-field-group">
               <%= form.label :year_start, class: 'font-weight-bold text-muted small' %>
-              <%= form.number_field :year_start, class: 'form-control form-control-sm' %>
+              <%= form.select :year_start, options_for_select(1895..2030, movie.year_start), {include_blank: "-- Choose year --"}, {class: 'form-control form-control-sm'}   %>
             </div>
 
             <div class="field form-group mb-4 transition-group" id="year-end-field-group">
               <%= form.label :year_end, class: 'font-weight-bold text-muted small' %>
-              <%= form.number_field :year_end, class: 'form-control form-control-sm' %>
+              <%= form.select :year_end, options_for_select(1895..2030, movie.year_end),  {include_blank: "-- Choose year --"}, {class: 'form-control form-control-sm'}   %>
             </div>
 
             <div class="field form-group mb-4" id="duration-field-group">
@@ -58,7 +58,7 @@
 
             <div class="field form-group mb-4">
               <%= form.label :description, class: 'font-weight-bold text-muted small' %>
-              <%= form.text_area :description, class: 'form-control form-control-sm' %>
+              <%= form.rich_text_area :description %>
             </div>
 
           </div>

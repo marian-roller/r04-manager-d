@@ -1,8 +1,14 @@
 class Movie < ApplicationRecord
-  validates :title, :movie_type, presence: true
-
   belongs_to :added_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
   has_many :mymovies
   has_many :users, through: :mymovies
+  has_rich_text :description
+
+  validates :title, :movie_type, presence: true
+  validates :title, length: { in: 2..200 }
+  validates :original_title, length: { in: 2..200 }, allow_blank: true
+  validates :movie_type, format: { with: /[1-2]{1}/ }
+  validates :year_start, :year_end, numericality: { only_integer: true, greater_than: 1895, less_than: 2030 }, allow_blank: true
+  validates :duration, numericality: { only_integer: true, greater_than: 2, less_than: 500}, allow_blank: true
 end
