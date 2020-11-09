@@ -78,7 +78,7 @@
 
             <div class="field form-group mb-4">
               <%= form.label :ranking, class: 'font-weight-bold text-muted small' %>
-              <%= form.number_field :ranking, class: 'form-control form-control-sm' %>
+              <%= form.select :ranking, options_for_select(1..10, mymovie.ranking), {include_blank: "-- My ranking --"}, {class: 'form-control form-control-sm'}   %>
             </div>
 
             <div class="field form-group mb-4 transition-group" id="watching-season-field-group">
