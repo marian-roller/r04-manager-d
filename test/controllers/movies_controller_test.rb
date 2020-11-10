@@ -3,6 +3,7 @@ require 'test_helper'
 class MoviesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @movie = movies(:one)
+    @movie_with_mymovie = movies(:two)
     sign_in users(:two)
   end
 
@@ -98,7 +99,13 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Movie.count', -1) do
       delete movie_url(@movie)
     end
+    assert_redirected_to movies_url
+  end
 
+  test "should not destroy movie" do
+    assert_difference('Movie.count', 0) do
+      delete movie_url(@movie_with_mymovie)
+    end
     assert_redirected_to movies_url
   end
 

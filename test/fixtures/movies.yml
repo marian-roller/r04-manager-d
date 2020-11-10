@@ -5,15 +5,19 @@ one:
   original_title: MyString
   movie_type: 1
   description: MyText
-  year_start: 1
-  year_end: 1
-  duration: 1
+  year_start: 1950
+  year_end: 1960
+  duration: 10
+  added_by_id: 1
+  updated_by_id: 1
 
 two:
   title: MyString
   original_title: MyString
   movie_type: 1
   description: MyText
-  year_start: 1
-  year_end: 1
+  year_start: 1950
+  year_end: 1960
   duration: 1
+  added_by_id: 1
+  updated_by_id: 1
