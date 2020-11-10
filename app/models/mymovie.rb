@@ -17,8 +17,8 @@ class Mymovie < ApplicationRecord
     if watching_start.present? && watching_start < Date.parse('01-01-2015')
       errors.add(:watching_start, "too log time ago")
     end
-    if watching_start.present? && watching_start > Date.today
-      errors.add(:watching_start, "can't be in the future")
+    if watching_start.present? && watching_start > Date.parse('31-12-2030')
+      errors.add(:watching_start, "too much in the future")
     end
   end
 
@@ -26,8 +26,8 @@ class Mymovie < ApplicationRecord
     if watching_end.present? && watching_end < Date.parse('01-01-2015')
       errors.add(:watching_end, "too log time ago")
     end
-    if watching_end.present? && watching_end > Date.today
-      errors.add(:watching_end, "can't be in the future")
+    if watching_end.present? && watching_end > Date.parse('31-12-2030')
+      errors.add(:watching_end, "too much in the future")
     end
   end
 

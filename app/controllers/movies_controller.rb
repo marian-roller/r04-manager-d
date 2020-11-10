@@ -63,8 +63,12 @@ class MoviesController < ApplicationController
 
   # DELETE /movies/1
   def destroy
-    @movie.destroy
-    redirect_to movies_url, notice: 'Movie was successfully destroyed.'
+    if !@movie.mymovies.empty?
+      redirect_to movies_url, notice: 'Cannot delete movie with my movies'
+    else
+      @movie.destroy
+      redirect_to movies_url, notice: 'Movie was successfully destroyed.'
+    end
   end
 
   private
