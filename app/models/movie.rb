@@ -3,6 +3,8 @@ class Movie < ApplicationRecord
   belongs_to :updated_by, class_name: 'User'
   has_many :mymovies, :dependent => :restrict_with_exception
   has_many :users, through: :mymovies
+  has_many :seasons, :dependent => :destroy
+  accepts_nested_attributes_for :seasons, allow_destroy: true
   has_rich_text :description
 
   validates :title, :movie_type, presence: true

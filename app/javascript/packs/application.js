@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("movies/form.js")
 require("mymovies/form.js")
+require("seasons/form.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
