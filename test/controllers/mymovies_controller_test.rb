@@ -2,7 +2,9 @@ require 'test_helper'
 
 class MymoviesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    sign_in users(:one)
     @mymovie = mymovies(:one)
+
   end
 
   test "should get index" do
