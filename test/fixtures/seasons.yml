@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  season_no: 1
+  episodes: 1
+
+two:
+  movie: two
+  season_no: 1
+  episodes: 1

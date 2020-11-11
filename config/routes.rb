@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :seasons
   # resources :mymovies
   resources :mymovies do
     member do
