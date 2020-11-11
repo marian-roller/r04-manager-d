@@ -27,27 +27,22 @@
 
             <div class="my-5">
               <div>Seasons: </div>
-
+              <div id="fieldsetContainer">
                 <%= form.fields_for :seasons do |seasons_form| %>
-                  <div>
-                    <div id="fieldsetContainer">
-                      <fieldset id="0">
-                        <%= seasons_form.label :season_no %>
-                        <%= seasons_form.number_field :season_no %>
-
-                      </fieldset>
-                    </div>
-
-                    <%#= seasons_form.check_box :_destroy %>
-<!--                    <br>-->
-                    <%#= seasons_form.label :season_no %>
-                    <%#= seasons_form.number_field :season_no %>
-<!--                    <br>-->
-                    <%#= seasons_form.label :episodes %>
-                    <%#= seasons_form.number_field :episodes %>
-
-                  </div>
+                  <fieldset id="<%= seasons_form.index %>">
+                    <h2><%= seasons_form.index %></h2>
+                    <%= seasons_form.label :season_no %>
+                    <%= seasons_form.number_field :season_no %>
+                    <br>
+                    <%= seasons_form.label :episodes %>
+                    <%= seasons_form.number_field :episodes %>
+                    <%= content_tag('a', 'DEL', id: "del-"+seasons_form.index.to_s, class:"badge badge-danger align-self-center")  %>
+                    <br>
+                    <%= seasons_form.check_box :_destroy %>
+                  </fieldset>
                 <% end %>
+              </div>
+
               <div id="addBook" class="btn btn-secondary">Add another season</div>
 
             </div>
