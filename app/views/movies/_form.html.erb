@@ -37,14 +37,12 @@
                     <%= seasons_form.label :episodes %>
                     <%= seasons_form.number_field :episodes %>
                     <%= content_tag('a', 'DEL', id: "del-"+seasons_form.index.to_s, class:"badge badge-danger align-self-center")  %>
-                    <br>
                     <%= seasons_form.check_box :_destroy %>
                   </fieldset>
                 <% end %>
               </div>
 
               <div id="addBook" class="btn btn-secondary">Add another season</div>
-
             </div>
 
             <div class="field form-group mb-4" >
