@@ -44,6 +44,7 @@ class MoviesController < ApplicationController
 
   # POST /movies
   def create
+    # abort movie_params.inspect
     @movie = Movie.new(movie_params)
     @movie.added_by = current_user
     @movie.updated_by = current_user
