@@ -5,6 +5,7 @@ export class MovieTypeSelector {
         this.year_end = document.getElementById('year-end-field-group');
         this.movie_type_selector = document.getElementById('movie_movie_type');
         this.duration = document.getElementById('duration-field-group');
+        this.seasons = document.getElementById('seasons-container');
         this.renderFieldsUponMovieType();
         this.movie_type_selector.addEventListener('change', (e) => {
             return this.renderFiledsUponMovieTypeChange();
@@ -14,6 +15,13 @@ export class MovieTypeSelector {
     // render onchange selector
     renderFiledsUponMovieTypeChange () {
         if (!this.renderFieldsUponMovieType()) {
+            // prevents deleting first season as onload checkbox state is 1
+            let destroyInputs = this.seasons.querySelectorAll('input[type=hidden]');
+            for (let i = 0; i < destroyInputs.length; i++ ) {
+                destroyInputs[i].value = 0;
+            }
+            this.seasons.classList.remove('input-wrapper-closed');
+            this.seasons.classList.add('input-wrapper-open');
             this.year_end.classList.remove('input-wrapper-closed');
             this.year_end.classList.add('input-wrapper-open');
             this.year_start.childNodes[1].innerText = "Year Start";
@@ -25,6 +33,13 @@ export class MovieTypeSelector {
     renderFieldsUponMovieType () {
         // if not tvserie
         if (this.movie_type_selector.value != 2) {
+
+            let destroyInputs = this.seasons.querySelectorAll('input[type=hidden]');
+            for (let i = 0; i < destroyInputs.length; i++ ) {
+                destroyInputs[i].value = 1;
+            }
+            this.seasons.classList.remove('input-wrapper-open');
+            this.seasons.classList.add('input-wrapper-closed');
             this.year_end.classList.remove('input-wrapper-open');
             this.year_end.classList.add('input-wrapper-closed');
             this.year_start.childNodes[1].innerText = "Year";

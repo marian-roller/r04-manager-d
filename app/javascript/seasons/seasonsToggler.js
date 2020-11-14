@@ -39,7 +39,7 @@ export class seasonsToggler {
         if (this.formPage) {
             this.formPage.addEventListener("click", (e) => {
 
-                if ( e.target.nodeName === "A" ) {
+                if ( e.target.nodeName === "A" && e.target.parentNode.previousElementSibling) {
                     e.target.parentNode.classList.add('d-none');
                     // enable deleting record - set value '1' on destroy checkbox
                     e.target.nextElementSibling.value = 1;

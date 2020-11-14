@@ -24,12 +24,33 @@
 
           </div>
           <div class="col-md-6">
+            <h1><%= controller.action_name %></h1>
 
-            <div class="my-5">
+            <div class="field form-group mb-4" >
+              <%= form.label :title, class: 'font-weight-bold text-muted small' %>
+              <%= form.text_field :title, class: 'form-control form-control-sm' %>
+            </div>
+
+
+
+            <div class="field form-group mb-4">
+              <%= form.label :movie_type, class: 'font-weight-bold text-muted small' %>
+              <%= select_tag('movie[movie_type]', options_for_select([['Movie', 1], ['Tv serie', 2]], movie.movie_type ) , class: "form-control form-control-sm #{'d-none' if controller.action_name == 'edit'}", :prompt => "-- Choose type --")  %>
+              <% if controller.action_name == 'edit' %>
+                <div class="font-weight-bold small">
+                  <% if movie.movie_type == '1' %>
+                    Movie
+                  <% else %>
+                    Tv serie
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="transition-group my-5" id="seasons-container">
               <div>Seasons: </div>
               <div id="fieldsetContainer" class="field form-group mb-4">
                 <%= form.fields_for :seasons do |seasons_form| %>
-                  <small><%= seasons_form.index %></small>
                   <fieldset id="<%= seasons_form.index %>">
                     <div class="row">
                       <div class="col-md-6">
@@ -41,29 +62,18 @@
                         <%= seasons_form.number_field :episodes, class: 'form-control form-control-sm' %>
                       </div>
                     </div>
-                    <%= content_tag('a', 'DEL', id: "del-"+seasons_form.index.to_s, class:"badge badge-danger align-self-center")  %>
-                    <%= seasons_form.check_box :_destroy %>
+                    <%= content_tag('a', 'Remove season', id: "del-"+seasons_form.index.to_s, class:"badge badge-danger align-self-center pointer-element")  %>
+                    <%= seasons_form.check_box :_destroy, class: 'd-none destroy-season-checkox'%>
                   </fieldset>
                 <% end %>
               </div>
 
-              <div id="addSeason" class="btn btn-secondary">Add another season</div>
-            </div>
-
-            <div class="field form-group mb-4" >
-              <%= form.label :title, class: 'font-weight-bold text-muted small' %>
-
-              <%= form.text_field :title, class: 'form-control form-control-sm' %>
+              <div id="addSeason" class="btn btn-info btn-sm">Add season</div>
             </div>
 
             <div class="field form-group mb-4">
               <%= form.label :original_title, class: 'font-weight-bold text-muted small' %>
               <%= form.text_field :original_title, class: 'form-control form-control-sm' %>
-            </div>
-
-            <div class="field form-group mb-4">
-              <%= form.label :movie_type, class: 'font-weight-bold text-muted small' %>
-              <%= select_tag('movie[movie_type]', options_for_select([['Movie', 1], ['Tv serie', 2]], movie.movie_type ) , class: 'form-control form-control-sm', :prompt => "-- Choose type --")  %>
             </div>
 
             <div class="field form-group mb-4" id="year-start-field-group">
