@@ -24,14 +24,11 @@
 
           </div>
           <div class="col-md-6">
-            <h1><%= controller.action_name %></h1>
 
             <div class="field form-group mb-4" >
               <%= form.label :title, class: 'font-weight-bold text-muted small' %>
               <%= form.text_field :title, class: 'form-control form-control-sm' %>
             </div>
-
-
 
             <div class="field form-group mb-4">
               <%= form.label :movie_type, class: 'font-weight-bold text-muted small' %>
@@ -48,27 +45,29 @@
             </div>
 
             <div class="transition-group my-5" id="seasons-container">
-              <div>Seasons: </div>
-              <div id="fieldsetContainer" class="field form-group mb-4">
+              <div class="font-weight-bold text-muted small">SEASONS: </div>
+              <div id="fieldsetContainer" class="field form-group mt-4 mb-1">
                 <%= form.fields_for :seasons do |seasons_form| %>
-                  <fieldset id="<%= seasons_form.index %>">
+                  <fieldset id="<%= seasons_form.index %>" class="">
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <%= seasons_form.label :season_no, class: 'font-weight-bold text-muted small' %>
-                        <%= seasons_form.number_field :season_no, class: 'form-control form-control-sm' %>
+                        <%= seasons_form.number_field :season_no, class: 'form-control form-control-sm', readonly: true %>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-8">
                         <%= seasons_form.label :episodes, class: 'font-weight-bold text-muted small' %>
                         <%= seasons_form.number_field :episodes, class: 'form-control form-control-sm' %>
                       </div>
                     </div>
-                    <%= content_tag('a', 'Remove season', id: "del-"+seasons_form.index.to_s, class:"badge badge-danger align-self-center pointer-element")  %>
+
+                    <%= content_tag('a', 'Remove season', id: "del-"+seasons_form.index.to_s, class:"py-1 px-2 badge badge-danger align-self-center pointer-element d-block mt-1 mb-2 remove-season-button")  %>
                     <%= seasons_form.check_box :_destroy, class: 'd-none destroy-season-checkox'%>
+
                   </fieldset>
                 <% end %>
               </div>
 
-              <div id="addSeason" class="btn btn-info btn-sm">Add season</div>
+              <div id="addSeason" class="py-1 px-2 badge badge-info align-self-center pointer-element w-100">Add season</div>
             </div>
 
             <div class="field form-group mb-4">
