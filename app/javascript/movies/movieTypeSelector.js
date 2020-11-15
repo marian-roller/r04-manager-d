@@ -1,5 +1,11 @@
+/**
+ * Class handles form state depending on movie type selector state
+ */
 export class MovieTypeSelector {
 
+    /**
+     * Sets necessary variables and adds event to movie type selector dropdown
+     */
     constructor () {
         this.year_start = document.getElementById('year-start-field-group');
         this.year_end = document.getElementById('year-end-field-group');
@@ -12,9 +18,12 @@ export class MovieTypeSelector {
         })
     }
 
-    // render onchange selector
+    /**
+     * Displays form fields depending on chosen movie type
+     */
     renderFiledsUponMovieTypeChange () {
         if (!this.renderFieldsUponMovieType()) {
+
             // prevents deleting first season as onload checkbox state is 1
             let destroyInputs = this.seasons.querySelectorAll('input[type=hidden]');
             for (let i = 0; i < destroyInputs.length; i++ ) {
@@ -29,15 +38,21 @@ export class MovieTypeSelector {
         }
     }
 
-    // render onload form
+    /**
+     * renders default form state onload
+     * @returns {boolean}
+     */
     renderFieldsUponMovieType () {
+
         // if not tvserie
-        if (this.movie_type_selector.value != 2) {
+        if (this.movie_type_selector.value !== '2') {
 
             let destroyInputs = this.seasons.querySelectorAll('input[type=hidden]');
+
             for (let i = 0; i < destroyInputs.length; i++ ) {
                 destroyInputs[i].value = 1;
             }
+
             this.seasons.classList.remove('input-wrapper-open');
             this.seasons.classList.add('input-wrapper-closed');
             this.year_end.classList.remove('input-wrapper-open');

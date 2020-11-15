@@ -1,5 +1,11 @@
+/**
+ * Class handles mymovie form state depending on chosen movie type
+ */
 export class MovieSelector {
 
+    /**
+     * Inititializes necessary variables, form state onload and add event to movie selector
+     */
     constructor () {
         this.movie = document.getElementById('mymovie_movie_id');
         this.watching_end = document.getElementById('watching-end-field-group');
@@ -12,8 +18,12 @@ export class MovieSelector {
         })
     }
 
-    // render onchange selector
+    /**
+     * Handles movie selector change event
+     */
     renderFiledsUponSelectedMovieTypeChange() {
+
+        // only if not tvserie
         if (!this.renderFieldsUponSelectedMovieType()) {
             this.watching_end.classList.remove('input-wrapper-open');
             this.watching_end.classList.add('input-wrapper-closed');
@@ -24,10 +34,14 @@ export class MovieSelector {
         }
     }
 
-    // render onload form
+    /**
+     * Renders initial form state onload
+     * @returns {boolean}
+     */
     renderFieldsUponSelectedMovieType() {
+
         // if tvserie
-        if (this.movie.options[this.movie.selectedIndex].getAttribute('data-type') == 2) {
+        if (this.movie.options[this.movie.selectedIndex].getAttribute('data-type') === '2') {
             this.watching_end.classList.remove('input-wrapper-closed');
             this.watching_end.classList.add('input-wrapper-open');
             this.watching_season.classList.remove('input-wrapper-closed');

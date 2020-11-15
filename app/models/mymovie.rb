@@ -4,7 +4,7 @@ class Mymovie < ApplicationRecord
   has_rich_text :impression
   validates :movie_id, presence: true
   validates_uniqueness_of :movie_id, scope: :user_id, message: 'already chosen'
-  validates :urgent, inclusion: { in: [false, true] }
+  validates :urgent, inclusion: { in: [false, true] }, allow_blank: true
   validates :times_watched, numericality: { only_integer: true, less_than: 100}, allow_blank: true
   validates :ranking, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10}, allow_blank: true
   validates :watching_season, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 100}, allow_blank: true
