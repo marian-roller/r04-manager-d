@@ -51,9 +51,9 @@
 
             <div class="transition-group mb-4" id="seasons-container">
               <div class="font-weight-bold text-muted small">SEASONS: </div>
-              <div id="fieldsetContainer transition-group" class="field form-group mb-1">
+              <div id="fieldsetContainer" class="field form-group mb-1">
                 <%= form.fields_for :seasons do |seasons_form| %>
-                  <fieldset id="<%= seasons_form.index %>" class="transition-group">
+                  <fieldset id="<%= seasons_form.index %>" class="">
                     <div class="row">
                       <div class="col-md-4">
                         <%= seasons_form.label :season_no, class: 'font-weight-bold text-muted small' %>
