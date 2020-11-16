@@ -4,7 +4,7 @@
 export class seasonsToggler {
 
     /**
-     * Inititialize necessary variables and actions to toggle seasons onload movie form poge
+     * Inititialize necessary variables and actions to toggle seasons onload movie form page
      */
     constructor () {
         this.formPage = document.getElementById("movies-form-page");
@@ -67,7 +67,7 @@ export class seasonsToggler {
 
 
     /**
-     * Displays first previously hidden fildset and returns false if any or true if not
+     * Displays first previously hidden fieldset and returns false if any or true if not
      * @returns {boolean}
      */
     handleFieldsetsDisplay () {
@@ -94,7 +94,7 @@ export class seasonsToggler {
     setNumberToFirstSeason () {
         let fieldsets = document.querySelectorAll('#fieldsetContainer fieldset');
         if (fieldsets) {
-            if (fieldsets[0].querySelector('input').value !== '1') {
+            if (fieldsets[0].querySelector('input').value === '') {
                 fieldsets[0].querySelector('input').value = '1';
             }
         }

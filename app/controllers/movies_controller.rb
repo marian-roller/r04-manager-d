@@ -32,10 +32,7 @@ class MoviesController < ApplicationController
   # GET /movies/new
   def new
     @movie = Movie.new
-    # 2.times { @movie.seasons.build }
-    # @season =  @movie.seasons.build
     @movie.seasons.build
-    # @movie.seasons.build
   end
 
   # GET /movies/1/edit
