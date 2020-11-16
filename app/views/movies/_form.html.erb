@@ -31,6 +31,11 @@
             </div>
 
             <div class="field form-group mb-4">
+              <%= form.label :original_title, class: 'font-weight-bold text-muted small' %>
+              <%= form.text_field :original_title, class: 'form-control form-control-sm' %>
+            </div>
+
+            <div class="field form-group mb-4">
               <%= form.label :movie_type, class: 'font-weight-bold text-muted small' %>
               <%= select_tag('movie[movie_type]', options_for_select([['Movie', 1], ['Tv serie', 2]], movie.movie_type ) , class: "form-control form-control-sm #{'d-none' if controller.action_name == 'edit'}", :prompt => "-- Choose type --")  %>
               <% if controller.action_name == 'edit' %>
@@ -44,9 +49,9 @@
               <% end %>
             </div>
 
-            <div class="transition-group my-5" id="seasons-container">
+            <div class="transition-group mb-4" id="seasons-container">
               <div class="font-weight-bold text-muted small">SEASONS: </div>
-              <div id="fieldsetContainer" class="field form-group mt-4 mb-1">
+              <div id="fieldsetContainer" class="field form-group mb-1">
                 <%= form.fields_for :seasons do |seasons_form| %>
                   <fieldset id="<%= seasons_form.index %>" class="">
                     <div class="row">
@@ -68,11 +73,6 @@
               </div>
 
               <div id="addSeason" class="py-1 px-2 badge badge-info align-self-center pointer-element w-100">Add season</div>
-            </div>
-
-            <div class="field form-group mb-4">
-              <%= form.label :original_title, class: 'font-weight-bold text-muted small' %>
-              <%= form.text_field :original_title, class: 'form-control form-control-sm' %>
             </div>
 
             <div class="field form-group mb-4" id="year-start-field-group">
