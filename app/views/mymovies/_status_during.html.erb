@@ -3,8 +3,31 @@
     <div class="d-flex">
       <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
     </div>
-    <div>
 
+    <% if mymovie.movie.movie_type == 2 %>
+      <div>
+        <%= form_for mymovie, url: updateEpisode_mymovie_path(mymovie), method: :put do |form|%>
+          <div class="field form-group mb-4" id="">
+            <%#= form.label mymovie.watching_season, class: 'font-weight-bold text-muted small' %>
+            <%= form.number_field :watching_season, class: 'form-control form-control-sm' %>
+          </div>
+
+          <div class="field form-group mb-4" id="">
+            <%#= form.label mymovie.last_episode, class: 'font-weight-bold text-muted small' %>
+            <%= form.number_field :last_episode, class: 'form-control form-control-sm' %>
+          </div>
+          <div>
+            <%= form.submit "Update", class: 'btn btn-dark btn-sm' %>
+          </div>
+        <% end %>
+      </div>
+
+      <div>Now watch:</div>
+      <div class="mx-3">Seas.: <%= mymovie.watching_season %></div>
+      <div class="mx-3">Epis.: <%= mymovie.last_episode + 1 %></div>
+    <% end %>
+
+    <div>
       <%= form_for mymovie, url: resetStatus_mymovie_path(mymovie), method: :put do |form|%>
         <div class="field">
           <%= form.hidden_field :status, :value => "4" %>
@@ -14,7 +37,6 @@
           <%= form.submit "Drop", class: 'btn btn-dark btn-sm' %>
         </div>
       <% end %>
-
     </div>
   </div>
 

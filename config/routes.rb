@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # resources :mymovies
   resources :mymovies do
     member do
-      put :resetStatus
+      put :resetStatus, :updateEpisode
     end
   end
   get 'myonlymovies', to: 'mymovies#index'
