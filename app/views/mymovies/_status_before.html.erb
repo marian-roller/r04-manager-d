@@ -2,18 +2,23 @@
   <div class="d-flex justify-content-between">
     <div class="d-flex">
       <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
-<!--      <div class="mr-3"><%#= mymovie.urgent %></div>-->
+      <% if mymovie.movie.movie_type == 2 %>
+        <div class="mx-3">Seas.: <%= mymovie.watching_season %></div>
+        <div class="mx-3">Epis.: <%= mymovie.last_episode %></div>
+      <% end %>
     </div>
 
     <div class="d-flex">
       <%= form_for mymovie, url: resetStatus_mymovie_path(mymovie), method: :put do |form|%>
-          <%= form.hidden_field :status, :value => "2" %>
-          <%= form.hidden_field :id, :value => mymovie.id %>
-          <%= form.submit "Start watching", class: 'btn btn-dark btn-sm ml-1' %>
+        <%= form.hidden_field :status, :value => "2" %>
+        <% if mymovie.movie.movie_type == 2 %>
+          <%= form.hidden_field :watching_season, :value => 1 %>
+        <% end %>
+        <%= form.hidden_field :id, :value => mymovie.id %>
+        <%= form.submit "Start watching", class: 'btn btn-dark btn-sm ml-1' %>
       <% end %>
 
       <%= link_to 'Delete', mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm ml-1' %>
-
     </div>
   </div>
 

@@ -1,4 +1,5 @@
 class Mymovie < ApplicationRecord
+  default_scope { order('updated_at DESC') }
   belongs_to :movie
   belongs_to :user
   has_rich_text :impression
@@ -7,7 +8,7 @@ class Mymovie < ApplicationRecord
   validates :urgent, inclusion: { in: [false, true] }, allow_blank: true
   validates :times_watched, numericality: { only_integer: true, less_than: 100}, allow_blank: true
   validates :ranking, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 10}, allow_blank: true
-  validates :watching_season, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 100}, allow_blank: true
+  validates :watching_season, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100}, allow_blank: true
   validates :last_episode, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 1000}, allow_blank: true
 
   validate :watching_start_date_scope
@@ -28,6 +29,13 @@ class Mymovie < ApplicationRecord
     end
     if watching_end.present? && watching_end > Date.parse('31-12-2030')
       errors.add(:watching_end, "too much in the future")
+    end
+  end
+
+  before_create do
+    if self.movie.movie_type == 2
+      self.watching_season = 0
+      self.last_episode = 0
     end
   end
 
