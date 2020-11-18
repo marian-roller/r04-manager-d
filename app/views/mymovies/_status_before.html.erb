@@ -6,6 +6,20 @@
         <div class="mx-3">Seas.: <%= mymovie.watching_season %></div>
         <div class="mx-3">Epis.: <%= mymovie.last_episode %></div>
       <% end %>
+      <div>Urgent: <%= mymovie.urgent %></div>
+      <% if mymovie.urgent? %>
+        <a href="#"
+           class="btn btn-secondary btn-block"
+           data-reflex=""
+           data-mymovie-id="<%= mymovie.id %>"
+        >Make not urgent</a>
+      <% else %>
+        <a href="#"
+           class="btn btn-secondary btn-block"
+           data-reflex=""
+           data-mymovie-id="<%= mymovie.id %>"
+        >Make urgent</a>
+      <% end %>
     </div>
 
     <div class="d-flex">
