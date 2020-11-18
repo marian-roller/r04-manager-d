@@ -21,3 +21,4 @@ require("seasons/form.js")
 
 require("trix")
 require("@rails/actiontext")
+import "controllers"
