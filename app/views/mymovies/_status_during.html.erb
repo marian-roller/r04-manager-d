@@ -28,15 +28,11 @@
     <% end %>
 
     <div>
-      <%= form_for mymovie, url: resetStatus_mymovie_path(mymovie), method: :put do |form|%>
-        <div class="field">
-          <%= form.hidden_field :status, :value => "4" %>
-          <%= form.hidden_field :id, :value => mymovie.id %>
-        </div>
-        <div>
-          <%= form.submit "Drop", class: 'btn btn-dark btn-sm' %>
-        </div>
-      <% end %>
+      <a href="#"
+         class="btn btn-dark btn-sm"
+         data-reflex="click->MymovieStatusReflex#drop_watching"
+         data-mymovie-id="<%= mymovie.id %>"
+      >Drop</a>
     </div>
   </div>
 
