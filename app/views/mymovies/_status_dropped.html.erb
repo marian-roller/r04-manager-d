@@ -4,17 +4,11 @@
       <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
     </div>
     <div>
-
-      <%= form_for mymovie, url: resetStatus_mymovie_path(mymovie), method: :put do |form|%>
-        <div class="field">
-          <%= form.hidden_field :status, :value => "2" %>
-          <%= form.hidden_field :id, :value => mymovie.id %>
-        </div>
-        <div>
-          <%= form.submit "Try again", class: 'btn btn-dark btn-sm' %>
-        </div>
-      <% end %>
-
+      <a href="#"
+         class="btn btn-dark btn-sm"
+         data-reflex="click->MymovieStatusReflex#restart_watching"
+         data-mymovie-id="<%= mymovie.id %>"
+      >Try again</a>
     </div>
   </div>
 </div>
