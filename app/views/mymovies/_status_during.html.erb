@@ -6,7 +6,10 @@
 
     <% if mymovie.movie.movie_type == 2 %>
       <div>
-        <%= form_for mymovie, url: updateEpisode_mymovie_path(mymovie), method: :put do |form|%>
+
+        <%#= form_for mymovie, url: updateEpisode_mymovie_path(mymovie), method: :put do |form|%>
+        <%= form_for mymovie, data: { reflex: "submit->MymovieStatus#update_episodes" } do |form|%>
+          <%= form.hidden_field :id %>
           <div class="field form-group mb-4" id="">
             <%#= form.label mymovie.watching_season, class: 'font-weight-bold text-muted small' %>
             <%= form.number_field :watching_season, class: 'form-control form-control-sm' %>
@@ -16,10 +19,17 @@
             <%#= form.label mymovie.last_episode, class: 'font-weight-bold text-muted small' %>
             <%= form.number_field :last_episode, class: 'form-control form-control-sm' %>
           </div>
+
+<!--          <div>-->
+            <%#= form.submit "Update", class: 'btn btn-dark btn-sm' %>
+<!--          </div>-->
+
           <div>
             <%= form.submit "Update", class: 'btn btn-dark btn-sm' %>
           </div>
         <% end %>
+
+
       </div>
 
       <div>Now watch:</div>

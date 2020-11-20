@@ -3,7 +3,7 @@ import ApplicationController from './application_controller'
 /* This is the custom StimulusReflex controller for the MymovieStatus Reflex.
  * Learn more at: https://docs.stimulusreflex.com
  */
-export default class extends ApplicationController {
+export default class MymovieStatus extends ApplicationController {
   /*
    * Regular Stimulus lifecycle methods
    * Learn more at: https://stimulusjs.org/reference/lifecycle-callbacks
@@ -16,11 +16,15 @@ export default class extends ApplicationController {
    * call super if you intend to do anything else when this controller connects.
   */
 
-  connect () {
-    super.connect()
-    // add your code here, if applicable
-  }
+  // connect () {
+  //   super.connect()
+  //   // add your code here, if applicable
+  // }
 
+  update_episodes(event) {
+    event.preventDefault()
+    console.log('Clicked')
+  }
   /* Reflex specific lifecycle methods.
    *
    * For every method defined in your Reflex class, a matching set of lifecycle methods become available
