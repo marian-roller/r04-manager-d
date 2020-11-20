@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MymovieStatusReflex < ApplicationReflex
+  delegate :current_user, to: :connection
   # Add Reflex methods in this file.
   #
   # All Reflex instances expose the following properties:
@@ -40,6 +41,32 @@ class MymovieStatusReflex < ApplicationReflex
   def drop_watching
     mymovie = Mymovie.find(element.dataset[:mymovie_id])
     mymovie.update(status: 4)
+  end
+
+  def update_episodes
+
+    @mymovie = current_user.mymovies.find(mymovie_params[:id])
+
+
+    # mymovie = Mymovie.find(element.dataset[:mymovie_id])
+    @mymovie.update(mymovie_params)
+    # abort mymovie_params.inspect
+
+    # @mymovie.update(mymovie_params)
+    # @allmytvseries = true
+    # redirect_to myonlytvseries_url
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mymovie
+    # @mymovie = current_user.mymovies.find(params[:id])
+    # @mymovies = true
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def mymovie_params
+    params.require(:mymovie).permit(:id, :movie_id, :user_id, :impression, :status, :urgent, :watching_start, :watching_end, :times_watched, :ranking, :watching_season, :last_episode)
   end
 
 end
