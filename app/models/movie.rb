@@ -13,4 +13,16 @@ class Movie < ApplicationRecord
   validates :movie_type, format: { with: /[1-2]{1}/ }
   validates :year_start, :year_end, numericality: { only_integer: true, greater_than: 1895, less_than: 2030 }, allow_blank: true
   validates :duration, numericality: { only_integer: true, greater_than: 2, less_than: 500}, allow_blank: true
+
+  def total_episodes
+    if seasons.size
+      episodes = 0
+      self.seasons.each do |s|
+        if s.episodes
+          episodes += s.episodes
+        end
+      end
+      episodes
+    end
+  end
 end

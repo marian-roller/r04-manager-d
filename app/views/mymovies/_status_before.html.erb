@@ -1,37 +1,62 @@
-<div class="card-body border">
-  <div class="d-flex justify-content-between">
+<div class="card-body border border-success">
+  <div class="">
     <div class="d-flex">
       <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
+    </div>
+
+    <div class="d-flex mb-1">
+      <div class="border px-2 mr-1 rounded">
+        <% if mymovie.movie.year_start %>
+          <%= mymovie.movie.year_start %>
+
+          <% if mymovie.movie.movie_type == 2 %>
+            <%= ' - ' %>
+          <% end %>
+          <% if mymovie.movie.year_end %>
+            <%= mymovie.movie.year_end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="border px-2 mr-1 rounded">
+        <% if mymovie.movie.duration %>
+          <%= mymovie.movie.duration.to_s + ' min' %>
+        <% end %>
+      </div>
+
       <% if mymovie.movie.movie_type == 2 %>
-        <div class="mx-3">Seas.: <%= mymovie.watching_season %></div>
-        <div class="mx-3">Epis.: <%= mymovie.last_episode %></div>
+        <% if mymovie.movie.seasons.size %>
+          <div class="border px-2 mr-1 rounded">
+            <span>Seasons: </span><%= mymovie.movie.seasons.size %>
+            <span> (tot. </span><%= mymovie.movie.total_episodes %> <span> ep.)</span>
+          </div>
+        <% end %>
       <% end %>
-      <div>Urgent: <%= mymovie.urgent %></div>
+    </div>
+
+    <div class="d-flex">
       <% if mymovie.urgent? %>
         <a href="#"
-           class="btn btn-secondary btn-block"
+           class="btn btn-secondary btn-sm btn-block "
            data-reflex="click->UrgentReflex#noturgent"
            data-mymovie-id="<%= mymovie.id %>"
         >Make not urgent</a>
       <% else %>
         <a href="#"
-           class="btn btn-dark"
+           class="btn btn-dark btn-sm btn-block"
            data-reflex="click->UrgentReflex#urgent"
            data-mymovie-id="<%= mymovie.id %>"
         >Make urgent</a>
       <% end %>
-    </div>
 
-    <div class="d-flex">
       <% if mymovie.status == 1 %>
         <a href="#"
-           class="btn btn-dark btn-sm ml-1"
+           class="btn btn-dark btn-sm ml-1 my-0 btn-block"
            data-reflex="click->MymovieStatusReflex#start_watching"
            data-mymovie-id="<%= mymovie.id %>"
         >Start watching</a>
       <% end %>
 
-      <%= link_to 'Delete', mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm ml-1' %>
+      <%= link_to 'Delete', mymovie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm ml-1 my-0 btn-block' %>
     </div>
   </div>
 
