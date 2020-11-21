@@ -43,18 +43,17 @@ class MymovieStatusReflex < ApplicationReflex
     mymovie.update(status: 4)
   end
 
-  def update_episodes
-
+  # inactive method
+  def update_episodes_form
     @mymovie = current_user.mymovies.find(mymovie_params[:id])
+    episode =  @mymovie.last_episode += 1
+    @mymovie.update(last_episode: episode)
+  end
 
-
-    # mymovie = Mymovie.find(element.dataset[:mymovie_id])
-    @mymovie.update(mymovie_params)
-    # abort mymovie_params.inspect
-
-    # @mymovie.update(mymovie_params)
-    # @allmytvseries = true
-    # redirect_to myonlytvseries_url
+  def update_episodes_link
+    mymovie = Mymovie.find(element.dataset[:mymovie_id])
+    updated_params = mymovie.update_episode_season_status
+    mymovie.update(updated_params)
   end
 
   private

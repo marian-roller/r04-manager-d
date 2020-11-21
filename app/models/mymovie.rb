@@ -39,4 +39,39 @@ class Mymovie < ApplicationRecord
     end
   end
 
+  def update_episode_season_status
+
+    # my movie params for updating
+    status = self.status
+    current_season_no = self.watching_season
+    current_episode_no = self.last_episode
+
+    # seasons data for comparisons
+    current_season_object = self.movie.seasons.where(season_no: current_season_no).first
+    current_season_object_episodes = current_season_object.episodes
+    total_seasons = self.movie.seasons.size
+
+    # regular update
+    if current_episode_no < current_season_object_episodes - 1
+      episode = self.last_episode + 1
+    end
+
+    # last episode in season update
+    if current_episode_no == current_season_object_episodes - 1
+      if current_season_no == total_seasons
+        # last episode in last season update
+        episode = self.last_episode + 1
+        status = 3
+      else
+        current_season_no += 1
+        episode = 0
+      end
+    end
+
+    data = {
+        "status" => status,
+        "watching_season"=> current_season_no,
+        "last_episode"=> episode
+    }
+  end
 end

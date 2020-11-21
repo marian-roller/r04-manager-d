@@ -15,10 +15,14 @@ class Movie < ApplicationRecord
   validates :duration, numericality: { only_integer: true, greater_than: 2, less_than: 500}, allow_blank: true
 
   def total_episodes
-    episodes = 0
-    self.seasons.each do |s|
-      episodes += s.episodes
+    if seasons.size
+      episodes = 0
+      self.seasons.each do |s|
+        if s.episodes
+          episodes += s.episodes
+        end
+      end
+      episodes
     end
-    episodes
   end
 end

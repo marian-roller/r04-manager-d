@@ -1,60 +1,56 @@
 <div class="card-body rounded during-mymovies">
-  <div class="d-flex justify-content-between">
+  <div class="">
     <div class="d-flex">
       <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
     </div>
+    <div class="d-flex justify-content-between mb-1 align-items-center">
+      <% if mymovie.movie.movie_type == 2 %>
 
-    <% if mymovie.movie.movie_type == 2 %>
+        <div class="card">
+          <div class="card-header">Last watched:</div>
+          <div class="card-body">
+            <div>Season: <%= mymovie.watching_season %></div>
+            <div>Episode: <%= mymovie.last_episode %></div>
+          </div>
+        </div>
+
+        <div>
+          <%#= form_for mymovie, url: updateEpisode_mymovie_path(mymovie), method: :put do |form|%>
+          <%#= form_for mymovie, data: { reflex: "submit->MymovieStatus#update_episodes_form" } do |form|%>
+            <%#= form.hidden_field :id %>
+            <%#= form.hidden_field :watching_season, class: 'form-control form-control-sm' %>
+            <%#= form.hidden_field :last_episode, class: 'form-control form-control-sm' %>
+            <%#= form.submit "Update form", class: 'btn btn-dark btn-sm' %>
+          <%# end %>
+
+          <a href="#"
+             class="btn btn-success btn-sm btn-block "
+             data-reflex="click->MymovieStatus#update_episodes_link"
+             data-mymovie-id="<%= mymovie.id %>"
+          >Update episode</a>
+        </div>
+
+        <div class="card bg-light">
+          <div class="card-header">Now watch:</div>
+          <div class="card-body">
+            <div>Season: <%= mymovie.watching_season %></div>
+            <div class="bg-info text-white px-1 rounded font-weight-bold">Episode: <%= mymovie.last_episode + 1 %></div>
+          </div>
+        </div>
+
+      <% else %>
+        <p>Czas</p>
+      <% end %>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
       <div>
-
-        <%#= form_for mymovie, url: updateEpisode_mymovie_path(mymovie), method: :put do |form|%>
-        <%= form_for mymovie, data: { reflex: "submit->MymovieStatus#update_episodes" } do |form|%>
-          <%= form.hidden_field :id %>
-          <div class="field form-group mb-4" id="">
-            <%#= form.label mymovie.watching_season, class: 'font-weight-bold text-muted small' %>
-            <%= form.number_field :watching_season, class: 'form-control form-control-sm' %>
-          </div>
-
-          <div class="field form-group mb-4" id="">
-            <%#= form.label mymovie.last_episode, class: 'font-weight-bold text-muted small' %>
-            <%= form.number_field :last_episode, class: 'form-control form-control-sm' %>
-          </div>
-
-<!--          <div>-->
-            <%#= form.submit "Update", class: 'btn btn-dark btn-sm' %>
-<!--          </div>-->
-
-          <div>
-            <%= form.submit "Update", class: 'btn btn-dark btn-sm' %>
-          </div>
-        <% end %>
-
-
+        <a href="#"
+           class="btn btn-dark btn-sm"
+           data-reflex="click->MymovieStatusReflex#drop_watching"
+           data-mymovie-id="<%= mymovie.id %>"
+        >Drop</a>
       </div>
-
-      <div>Now watch:</div>
-      <div class="mx-3">Seas.: <%= mymovie.watching_season %></div>
-      <div class="mx-3">Epis.: <%= mymovie.last_episode + 1 %></div>
-    <% end %>
-
-    <div>
-      <a href="#"
-         class="btn btn-dark btn-sm"
-         data-reflex="click->MymovieStatusReflex#drop_watching"
-         data-mymovie-id="<%= mymovie.id %>"
-      >Drop</a>
     </div>
   </div>
-
-  <% if mymovie.movie.movie_type == 2 %>
-    <div>
-      <p>Sezony</p>
-      <!--      <div class="mr-3"><%#= mymovie.watching_season %></div>-->
-      <!--      <div class="mr-3"><%#= mymovie.last_episode %></div>-->
-    </div>
-
-  <% else %>
-
-    <p>Czas</p>
-  <% end %>
 </div>

@@ -27,9 +27,10 @@ class MymoviesController < ApplicationController
   end
 
   def updateEpisode
-    @mymovie.update(mymovie_params)
-    @allmytvseries = true
-    redirect_to myonlytvseries_url
+    # new_params = @mymovie.update_episode_season_status
+    # @mymovie.update(new_params)
+    # @allmytvseries = true
+    # redirect_to myonlytvseries_url
   end
 
   # GET /mymovies/1
