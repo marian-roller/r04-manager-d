@@ -56,8 +56,13 @@ class MymovieStatusReflex < ApplicationReflex
     mymovie.update(updated_params)
   end
 
+  def mark_as_watched
+    mymovie = Mymovie.find(element.dataset[:mymovie_id])
+    mymovie.update(status: 3)
+  end
+
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_mymovie
     # @mymovie = current_user.mymovies.find(params[:id])
     # @mymovies = true
