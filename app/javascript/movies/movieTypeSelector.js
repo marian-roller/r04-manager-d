@@ -16,6 +16,12 @@ export class MovieTypeSelector {
         this.movie_type_selector.addEventListener('change', (e) => {
             return this.renderFiledsUponMovieTypeChange();
         })
+        this.api_button = document.getElementById('api-button');
+        // this.posters_container = document.getElementById('posters-container');
+        // console.log(this.posters_container);
+        this.api_button.addEventListener('click', (e) => {
+            return this.imdbApiTest();
+        })
     }
 
     /**
@@ -62,6 +68,36 @@ export class MovieTypeSelector {
             this.year_end.childNodes[3].value = "";
             return true;
         }
+    }
+
+    imdbApiTest () {
+        const data = null;
+
+        const xhr = new XMLHttpRequest();
+        // fix this credentials!!!:
+        // xhr.withCredentials = true;
+
+        xhr.posters_container = document.getElementById('posters-container');
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+
+                let result = this.responseText
+
+                let output = JSON.parse(result)["Search"][0]["Poster"];
+
+                let image = document.createElement("img");
+                image.src = output;
+                console.log(image);
+                this.posters_container.appendChild(image);
+            }
+        });
+
+        xhr.open("GET", "https://movie-database-imdb-alternative.p.rapidapi.com/?s=lost&page=1&r=json");
+        xhr.setRequestHeader("x-rapidapi-key", "f1dffc67bdmshdce78cd180c6ca6p1f84b0jsn6ce198219dce");
+        xhr.setRequestHeader("x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
+
+        xhr.send(data);
     }
 }
 
