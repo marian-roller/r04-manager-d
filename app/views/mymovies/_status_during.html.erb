@@ -37,13 +37,19 @@
             <div class="bg-info text-white px-1 rounded font-weight-bold">Episode: <%= mymovie.last_episode + 1 %></div>
           </div>
         </div>
-
-      <% else %>
-        <p>Czas</p>
       <% end %>
     </div>
 
     <div class="d-flex justify-content-end mt-3">
+      <% if mymovie.movie.movie_type == 1 %>
+        <div>
+          <a href="#"
+             class="btn btn-dark btn-sm mr-1"
+             data-reflex="click->MymovieStatusReflex#mark_as_watched"
+             data-mymovie-id="<%= mymovie.id %>"
+          >Mark as watched</a>
+        </div>
+      <% end %>
       <div>
         <a href="#"
            class="btn btn-dark btn-sm"

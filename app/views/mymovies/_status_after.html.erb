@@ -1,17 +1,20 @@
 <div class="card-body border">
-  <div class="d-flex justify-content-between">
-    <div class="">
+  <div class="">
+    <div class="d-flex">
       <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold' %>
     </div>
-      <div class="mr-3">Ranking: <%= mymovie.ranking %></div>
-  </div>
+    <div class="d-flex mb-1">
+      <div class="border px-2 mr-1 rounded bg-light">
+        Ranking: <%= mymovie.ranking %>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a href="#"
+           class="btn btn-dark btn-sm"
+           data-reflex="click->MymovieStatusReflex#start_watching"
+           data-mymovie-id="<%= mymovie.id %>"
+        >Watch again</a>
+    </div>
 
-  <div class="d-flex flex-row-reverse">
-    <a href="#"
-       class="btn btn-dark btn-sm"
-       data-reflex="click->MymovieStatusReflex#start_watching"
-       data-mymovie-id="<%= mymovie.id %>"
-    >Watch again</a>
   </div>
-
 </div>
