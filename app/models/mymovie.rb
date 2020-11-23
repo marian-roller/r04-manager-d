@@ -74,4 +74,10 @@ class Mymovie < ApplicationRecord
         "last_episode"=> episode
     }
   end
+
+  def get_current_season_episodes
+    current_season_no = self.watching_season
+    current_season_object = self.movie.seasons.where(season_no: current_season_no).first
+    current_season_object_episodes = current_season_object.episodes
+  end
 end

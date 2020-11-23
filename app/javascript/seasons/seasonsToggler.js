@@ -93,7 +93,7 @@ export class seasonsToggler {
      */
     setNumberToFirstSeason () {
         let fieldsets = document.querySelectorAll('#fieldsetContainer fieldset');
-        if (fieldsets) {
+        if (fieldsets && fieldsets.length !== 0) {
             if (fieldsets[0].querySelector('input').value === '') {
                 fieldsets[0].querySelector('input').value = '1';
             }
