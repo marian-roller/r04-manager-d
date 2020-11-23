@@ -9,8 +9,8 @@
         <div class="card">
           <div class="card-header">Last watched:</div>
           <div class="card-body">
-            <div>Season: <%= mymovie.watching_season %></div>
-            <div>Episode: <%= mymovie.last_episode %></div>
+            <div>Season: <%= mymovie.watching_season %> <small>(<%= mymovie.movie.seasons.size %>)</small></div>
+            <div>Episode: <%= mymovie.last_episode %> <small>(<%= mymovie.get_current_season_episodes %>)</small></div>
           </div>
         </div>
 

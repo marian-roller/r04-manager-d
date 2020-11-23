@@ -41,31 +41,40 @@
         </p>
 
         <p>
-          <strong>Year start:</strong>
+          <strong>
+            <%= @movie.movie_type == 2 ? 'Year start: ' : 'Year: ' %>
+          </strong>
           <%= @movie.year_start %>
         </p>
 
-        <p>
-          <strong>Year end:</strong>
-          <%= @movie.year_end %>
-        </p>
+        <% if @movie.movie_type == 2 %>
+          <p>
+            <strong>Year end:</strong>
+            <%= @movie.year_end %>
+          </p>
+        <% end %>
 
         <p>
           <strong>Duration:</strong>
           <%= @movie.duration %>
         </p>
 
-        <div class="mb-3">
-          <strong>Seasons: </strong> <%= @movie.seasons.size %>
-          <div>
-            <% @movie.seasons.each do |season| %>
-            <div>Season <%= season.season_no %>: <%= season.episodes %> episodes</div>
-            <% end %>
+        <% if @movie.movie_type == 2 %>
+          <div class="mb-3">
+            <strong>Seasons: </strong> <%= @movie.seasons.size %>
+            <div>
+              <% @movie.seasons.each do |season| %>
+                <div>Season <%= season.season_no %>: <%= season.episodes %> episodes</div>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <div><small>
+        <% end %>
+
+        <div>
+          <small>
           <strong>Added by: </strong><%= @movie.added_by.username %>
-          <strong> at: </strong><%= @movie.created_at.in_time_zone("Warsaw").strftime("%d-%m-%Y %H:%M") %></small>
+          <strong> at: </strong><%= @movie.created_at.in_time_zone("Warsaw").strftime("%d-%m-%Y %H:%M") %>
+        </small>
         </div>
 
 
