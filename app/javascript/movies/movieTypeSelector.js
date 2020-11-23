@@ -1,12 +1,15 @@
+import { imdbApi } from "./imdbApi";
+
 /**
  * Class handles form state depending on movie type selector state
  */
-export class MovieTypeSelector {
-
+export class MovieTypeSelector
+{
     /**
      * Sets necessary variables and adds event to movie type selector dropdown
      */
-    constructor () {
+    constructor ()
+    {
         this.year_start = document.getElementById('year-start-field-group');
         this.year_end = document.getElementById('year-end-field-group');
         this.movie_type_selector = document.getElementById('movie_movie_type');
@@ -16,16 +19,14 @@ export class MovieTypeSelector {
         this.movie_type_selector.addEventListener('change', (e) => {
             return this.renderFiledsUponMovieTypeChange();
         })
-        this.api_button = document.getElementById('api-button');
-        this.api_button.addEventListener('click', (e) => {
-            return this.imdbApiTest();
-        })
+        new imdbApi();
     }
 
     /**
      * Displays form fields depending on chosen movie type
      */
-    renderFiledsUponMovieTypeChange () {
+    renderFiledsUponMovieTypeChange ()
+    {
         if (!this.renderFieldsUponMovieType()) {
 
             // prevents deleting first season as onload checkbox state is 1
@@ -46,8 +47,8 @@ export class MovieTypeSelector {
      * renders default form state onload
      * @returns {boolean}
      */
-    renderFieldsUponMovieType () {
-
+    renderFieldsUponMovieType ()
+    {
         // if not tvserie
         if (this.movie_type_selector.value !== '2') {
 
@@ -66,40 +67,6 @@ export class MovieTypeSelector {
             this.year_end.childNodes[3].value = "";
             return true;
         }
-    }
-
-    imdbApiTest () {
-        const data = null;
-        const xhr = new XMLHttpRequest();
-        // fix this credentials!!!:
-        // xhr.withCredentials = true;
-
-        let posters_container = document.getElementById('posters-container');
-
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-
-                let result = this.responseText
-                let resultObject = JSON.parse(result);
-                let resultObjectSearch = resultObject["Search"];
-
-                for (let x in resultObjectSearch) {
-                    let figcaptionTag = document.createElement("figcaption");
-                    figcaptionTag.innerText = resultObjectSearch[x].Title;
-                    let imageTag = document.createElement("img");
-                    imageTag.src = resultObjectSearch[x].Poster;
-                    let figureTag = document.createElement("figure");
-                    figureTag.appendChild(imageTag);
-                    figureTag.appendChild(figcaptionTag);
-                    posters_container.appendChild(figureTag);
-                }
-            }
-        });
-
-        xhr.open("GET", "https://movie-database-imdb-alternative.p.rapidapi.com/?s=lost&page=1&r=json");
-        xhr.setRequestHeader("x-rapidapi-key", "f1dffc67bdmshdce78cd180c6ca6p1f84b0jsn6ce198219dce");
-        xhr.setRequestHeader("x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
-        xhr.send(data);
     }
 }
 
