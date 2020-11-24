@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  has_one_attached :image
   belongs_to :added_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
   has_many :mymovies, :dependent => :restrict_with_exception
