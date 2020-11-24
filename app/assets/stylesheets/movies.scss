@@ -35,6 +35,23 @@
   .pointer-element {
     cursor: pointer;
   }
+
+  #posters-container {
+    .poster-link-container {
+      width: 50%;
+      padding: 5%;
+      .poster-figure {
+        width: 100%;
+        .poster-image {
+          width: 100%;
+        }
+        .poster-figcaption {
+
+        }
+      }
+    }
+
+  }
 }
 // END FORM PAGES //
 

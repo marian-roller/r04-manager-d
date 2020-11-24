@@ -32,9 +32,16 @@ export class imdbApi
                     let imageTag = document.createElement("img");
                     imageTag.src = resultObjectSearch[x].Poster;
                     let figureTag = document.createElement("figure");
+                    let linkTag = document.createElement("a");
+                    linkTag.classList.add('poster-link-container');
+                    linkTag.href = "#";
+                    figureTag.classList.add('poster-figure');
+                    imageTag.classList.add('poster-image');
+                    figcaptionTag.classList.add('poster-figcaption');
                     figureTag.appendChild(imageTag);
                     figureTag.appendChild(figcaptionTag);
-                    posters_container.appendChild(figureTag);
+                    linkTag.appendChild(figureTag);
+                    posters_container.appendChild(linkTag);
                 }
             }
         });
