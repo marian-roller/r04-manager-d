@@ -63,7 +63,7 @@
 
           <% if @mymovie.watching_start %>
             <div>
-              <strong>Watching start:</strong>
+              <strong><%= @mymovie.movie.movie_type == 1 ? "Watched at:" : "Watching start: " %></strong>
               <%= @mymovie.watching_start.in_time_zone("Warsaw").strftime("%d-%m-%Y") %>
             </div>
           <% end %>

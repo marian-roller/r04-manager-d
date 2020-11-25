@@ -58,7 +58,8 @@ class MymovieStatusReflex < ApplicationReflex
 
   def mark_as_watched
     mymovie = Mymovie.find(element.dataset[:mymovie_id])
-    mymovie.update(status: 3)
+    now = Time.now.strftime("%d-%m-%Y")
+    mymovie.update(status: 3, watching_start: now)
   end
 
   private

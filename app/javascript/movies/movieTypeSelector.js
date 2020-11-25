@@ -19,7 +19,7 @@ export class MovieTypeSelector
         this.movie_type_selector.addEventListener('change', (e) => {
             return this.renderFiledsUponMovieTypeChange();
         })
-        // new imdbApi();
+        new imdbApi();
     }
 
     /**
