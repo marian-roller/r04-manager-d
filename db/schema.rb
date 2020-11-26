@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_122446) do
+ActiveRecord::Schema.define(version: 2020_11_26_182300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_122446) do
     t.integer "movie_type", limit: 2
     t.bigint "added_by_id"
     t.bigint "updated_by_id"
+    t.decimal "ranking_avg", precision: 4, scale: 2
     t.index ["added_by_id"], name: "index_movies_on_added_by_id"
     t.index ["updated_by_id"], name: "index_movies_on_updated_by_id"
   end
