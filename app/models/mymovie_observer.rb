@@ -1,6 +1,6 @@
 class MymovieObserver < ActiveRecord::Observer
-  def before_save(mymovie)
-    # Notifications.comment("admin@do.com", "New comment was posted", comment).deliver
-    abort "test".inspect
+  def after_save(mymovie)
+    movie = Movie.find(mymovie.movie_id)
+    movie.update(ranking_avg: mymovie.ranking)
   end
 end
