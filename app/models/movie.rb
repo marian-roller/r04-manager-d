@@ -26,4 +26,32 @@ class Movie < ApplicationRecord
       episodes
     end
   end
+
+  def update_ranking
+    ranked_mymovies = self.get_mymovies_status_watched
+    number_of_mymovies = ranked_mymovies.size
+    total_ranking_points = self.get_total_ranking_points ranked_mymovies
+    new_ranking = self.calculate_new_ranking number_of_mymovies, total_ranking_points
+    self.update(ranking_avg: new_ranking)
+  end
+
+  def get_mymovies_status_watched
+    # get all ranked mymovies of this movie
+    self.mymovies.where.not(ranking: nil)
+  end
+
+  def get_total_ranking_points (ranked_mymovies)
+    # calculate new ranking of the movie
+    total_ranking_points = 0
+    ranked_mymovies.each do |movie|
+      if movie.ranking
+        total_ranking_points += movie.ranking
+      end
+    end
+    total_ranking_points
+  end
+
+  def calculate_new_ranking (number_of_mymovies, total_ranking_points)
+    total_ranking_points.to_f / number_of_mymovies.to_f
+  end
 end
