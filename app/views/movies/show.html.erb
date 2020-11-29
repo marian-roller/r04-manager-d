@@ -8,6 +8,8 @@
     <div>
       <% if user_signed_in? %>
         <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-info btn-sm' %>
+        <%= link_to 'Destroy', @movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+
       <% end %>
       <%= link_to 'Back', movies_path, class: 'btn btn-secondary btn-sm' %>
     </div>

@@ -25,62 +25,72 @@
 
   </div>
 
-  <div class="card-body">
-    <div class="row p-3">
+  <div class="card-body d-flex">
 
-      <table class="table table-bordered table-hover table-sm table-responsive-lg">
-        <thead>
-        <tr  class="d-flex">
-          <th class="col-3">Title</th>
-          <th class="col-2">Original title</th>
-          <th class="col-1">Type</th>
-          <th class="col-1">Ranking</th>
-          <th class="col-1">Year start</th>
-          <th class="col-1">Year end</th>
-          <th class="col-3" colspan="3"></th>
-        </tr>
-        </thead>
+    <div class="card-deck">
+      <% @movies.each do |movie| %>
 
-        <tbody>
-        <% @movies.each do |movie| %>
-          <tr  class="d-flex">
-            <td class="col-3"><%= movie.title %></td>
-            <td class="col-2"><%= movie.original_title %></td>
-            <td class="col-1"><%= movie.movie_type %></td>
-            <td class="col-1">test</td>
-            <td class="col-1"><%= movie.year_start %></td>
-            <td class="col-1"><%= movie.year_end %></td>
-            <td class="col-3 text-center">
-              <div class="d-flex <%= user_signed_in? ? 'justify-content-between' : 'justify-content-around' %>">
-                <%= link_to 'Show', movie, class: 'btn btn-info btn-sm' %>
-                <% if user_signed_in? %>
-                  <%= link_to 'Edit', edit_movie_path(movie), class: 'btn btn-secondary btn-sm' %>
-                  <%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        <div class="card">
+
+          <%= link_to movie, class: '' do %>
+            <% if movie.image.attached? %>
+              <%= image_tag movie.image, class: 'card-img-top p-2 bg-secondary' %>
+            <% end %>
+          <% end %>
+
+          <div class="font-weight-bold text-dark p-2 d-flex align-items-center h-100">
+            <div>
+              <%= movie.title %>
+            </div>
+          </div>
+
+          <div class="card-footer p-2 font-weight-bold text-muted small">
+
+            <div>
+              <%= movie.movie_type == 1 ? 'Movie' : 'Tv serie' %>
+            </div>
+
+            <% if movie.ranking_avg %>
+              <div><%= movie.ranking_avg %></div>
+            <% else %>
+              <div>Not ranked yet</div>
+            <% end %>
+
+            <div><%= movie.year_start %>
+              <% if movie.movie_type == 2 %>
+              -
+                <% if movie.year_end %>
+                  <%= movie.year_end %>
                 <% end %>
-              </div>
+              <% end %>
+            </div>
 
+            <div>
               <% if user_signed_in? %>
                 <% if movie.users.where(id: current_user.id).first %>
                   <div class="btn btn-dark btn-sm my-1 btn-outline-secondary btn-block disabled">Added</div>
                 <% else %>
                   <%= form_with(model: @mymovie, local: true) do |form| %>
+
                     <div class="field">
                       <%= form.hidden_field :movie_id, :value => movie.id %>
                       <%= form.hidden_field :status, :value => "1" %>
                     </div>
+
                     <div>
                       <%= form.submit "Add to my list", class: 'my-1 btn btn-primary btn-sm btn-block' %>
                     </div>
+
                   <% end %>
                 <% end %>
               <% end %>
+            </div>
 
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+          </div>
 
+        </div>
+
+      <% end %>
     </div>
   </div>
 
