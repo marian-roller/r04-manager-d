@@ -35,6 +35,7 @@ export class imdbApi
                     let linkTag = document.createElement("a");
                     linkTag.classList.add('poster-link-container');
                     linkTag.href = "#";
+                    // linkTag.download = resultObjectSearch[x].Poster;
                     figureTag.classList.add('poster-figure');
                     imageTag.classList.add('poster-image');
                     figcaptionTag.classList.add('poster-figcaption');

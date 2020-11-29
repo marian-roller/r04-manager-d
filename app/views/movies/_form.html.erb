@@ -20,8 +20,23 @@
 
       <div class="card-body">
         <div class="row p-3">
-          <div class="col-md-6">
-            <%= form.file_field :image %>
+          <div class="col-md-6 ">
+            <%= form.label :image,'Select new poster', class: 'btn btn-block btn-sm btn-primary w-75 mx-auto', id: 'image-input-label' %>
+            <%= form.file_field :image, class: 'invisible' %>
+
+            <div id="preview-image-container" class="d-flex justify-content-center mt-1">
+            </div>
+
+            <% if @movie.image.attached? %>
+              <div class="field form-group mt-1 w-75 mx-auto mb-0" id="remove-poster-field-group">
+                <%= form.check_box :remove_image %>
+                <%= form.label :remove_image, "Remove poster image", class: 'font-weight-bold text-muted small' %>
+              </div>
+              <div class="d-flex justify-content-center">
+                <%= image_tag @movie.image, class: 'w-75', id: 'existing-image' %>
+              </div>
+            <% end %>
+
             <div id="posters-container" class="d-flex flex-wrap"></div>
           </div>
           <div class="col-md-6">
