@@ -17,7 +17,7 @@
     <div class="row p-3">
       <div class="col-md-6">
         <% if @movie.image.attached? %>
-          <div>
+          <div class="d-flex justify-content-center">
             <%= image_tag @movie.image, class: 'w-75' %>
           </div>
 

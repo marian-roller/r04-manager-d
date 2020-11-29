@@ -15,6 +15,9 @@ class Movie < ApplicationRecord
   validates :year_start, :year_end, numericality: { only_integer: true, greater_than: 1895, less_than: 2030 }, allow_blank: true
   validates :duration, numericality: { only_integer: true, greater_than: 2, less_than: 500}, allow_blank: true
 
+  attr_accessor :remove_image
+  after_save :purge_image
+
   def total_episodes
     if seasons.size
       episodes = 0
@@ -54,4 +57,11 @@ class Movie < ApplicationRecord
   def calculate_new_ranking (number_of_mymovies, total_ranking_points)
     total_ranking_points.to_f / number_of_mymovies.to_f
   end
+
+  private def purge_image
+    if  self.remove_image == "1"
+      image.purge_later
+    end
+  end
+
 end
