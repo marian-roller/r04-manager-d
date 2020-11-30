@@ -4,14 +4,14 @@
     <div class="movies-selector d-flex align-items-center">
       <div>
         <%= link_to movies_path,
-                    class: "btn btn-info my-1 mx-5 #{'btn-sm' unless @allmovies} #{'active font-weight-bold border-button' if @allmovies}", :action => 'go' do %>
+                    class: "btn btn-info my-1 mr-5 #{'btn-sm' unless @allmovies} #{'active font-weight-bold border-button' if @allmovies}", :action => 'go' do %>
           <h1 class="<%= 'font-weight-bold' if @allmovies %> h6 m-0 movie-button  >">All movies</h1>
         <% end %>
       </div>
 
       <div>
         <%= link_to 'Movies', onlymovies_path,
-                    class: "btn btn-info ml-5 my-1 h6 m-0 movie-button #{ 'btn-sm' unless @onlymovies}  #{'active font-weight-bold border-button' if @onlymovies}" %>
+                    class: "btn btn-info mx-3 my-1 h6 m-0 movie-button #{ 'btn-sm' unless @onlymovies}  #{'active font-weight-bold border-button' if @onlymovies}" %>
         <%= link_to 'Tv series', onlytvseries_path,
                     class: "btn btn-info mx-2 my-1 h6 m-0 movie-button #{'btn-sm' unless @onlytvseries }  #{'active font-weight-bold border-button' if @onlytvseries}" %>
       </div>
@@ -25,70 +25,73 @@
 
   </div>
 
-  <div class="card-body d-flex">
+  <div class="card-body">
 
-    <div class="card-deck">
+    <div class="d-flex flex-wrap justify-content-left">
       <% @movies.each do |movie| %>
 
-        <div class="card">
+        <div class="p-2" style="max-width: 210px">
+          <div class="card h-100">
 
-          <%= link_to movie, class: '' do %>
-            <% if movie.image.attached? %>
-              <%= image_tag movie.image, class: 'card-img-top p-2 bg-secondary' %>
-            <% end %>
-          <% end %>
-
-          <div class="font-weight-bold text-dark p-2 d-flex align-items-center h-100">
-            <div>
-              <%= movie.title %>
-            </div>
-          </div>
-
-          <div class="card-footer p-2 font-weight-bold text-muted small">
-
-            <div>
-              <%= movie.movie_type == 1 ? 'Movie' : 'Tv serie' %>
-            </div>
-
-            <% if movie.ranking_avg %>
-              <div><%= movie.ranking_avg %></div>
-            <% else %>
-              <div>Not ranked yet</div>
-            <% end %>
-
-            <div><%= movie.year_start %>
-              <% if movie.movie_type == 2 %>
-              -
-                <% if movie.year_end %>
-                  <%= movie.year_end %>
-                <% end %>
+            <%= link_to movie, class: '' do %>
+              <% if movie.image.attached? %>
+                <%= image_tag movie.image, class: 'card-img-top p-2 bg-secondary' %>
               <% end %>
+            <% end %>
+
+            <div class="font-weight-bold text-dark p-2 d-flex align-items-center h-100">
+              <div>
+                <%= movie.title %>
+              </div>
             </div>
 
-            <div>
-              <% if user_signed_in? %>
-                <% if movie.users.where(id: current_user.id).first %>
-                  <div class="btn btn-dark btn-sm my-1 btn-outline-secondary btn-block disabled">Added</div>
-                <% else %>
-                  <%= form_with(model: @mymovie, local: true) do |form| %>
+            <div class="card-footer p-2 font-weight-bold text-muted small">
 
-                    <div class="field">
-                      <%= form.hidden_field :movie_id, :value => movie.id %>
-                      <%= form.hidden_field :status, :value => "1" %>
-                    </div>
+              <div>
+                <%= movie.movie_type == 1 ? 'Movie' : 'Tv serie' %>
+              </div>
 
-                    <div>
-                      <%= form.submit "Add to my list", class: 'my-1 btn btn-primary btn-sm btn-block' %>
-                    </div>
+              <% if movie.ranking_avg %>
+                <div><%= movie.ranking_avg %></div>
+              <% else %>
+                <div>Not ranked yet</div>
+              <% end %>
 
+              <div><%= movie.year_start %>
+                <% if movie.movie_type == 2 %>
+                  -
+                  <% if movie.year_end %>
+                    <%= movie.year_end %>
                   <% end %>
                 <% end %>
-              <% end %>
+              </div>
+
+              <div>
+                <% if user_signed_in? %>
+                  <% if movie.users.where(id: current_user.id).first %>
+                    <div class="btn btn-dark btn-sm my-1 btn-outline-secondary btn-block disabled">Added</div>
+                  <% else %>
+                    <%= form_with(model: @mymovie, local: true) do |form| %>
+
+                      <div class="field">
+                        <%= form.hidden_field :movie_id, :value => movie.id %>
+                        <%= form.hidden_field :status, :value => "1" %>
+                      </div>
+
+                      <div>
+                        <%= form.submit "Add to my list", class: 'my-1 btn btn-primary btn-sm btn-block' %>
+                      </div>
+
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+
             </div>
 
           </div>
-
         </div>
+
 
       <% end %>
     </div>
