@@ -33,6 +33,7 @@ class Movie < ApplicationRecord
   def update_ranking
     ranked_mymovies = self.get_mymovies_status_watched
     number_of_mymovies = ranked_mymovies.size
+    puts "AAAAAAAAAAAAAAAAAAAAAAa: " + number_of_mymovies.inspect
     total_ranking_points = self.get_total_ranking_points ranked_mymovies
     new_ranking = self.calculate_new_ranking number_of_mymovies, total_ranking_points
     self.update(ranking_avg: new_ranking)
@@ -55,7 +56,12 @@ class Movie < ApplicationRecord
   end
 
   def calculate_new_ranking (number_of_mymovies, total_ranking_points)
-    total_ranking_points.to_f / number_of_mymovies.to_f
+    if number_of_mymovies > 0
+      total_ranking_points.to_f / number_of_mymovies.to_f
+    else
+      nil
+    end
+
   end
 
   private def purge_image

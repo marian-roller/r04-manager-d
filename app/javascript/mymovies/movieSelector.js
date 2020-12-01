@@ -11,6 +11,7 @@ export class MovieSelector {
         this.watching_end = document.getElementById('watching-end-field-group');
         this.watching_season = document.getElementById('watching-season-field-group');
         this.last_episode = document.getElementById('last-episode-field-group');
+        this.watching_start_label = document.getElementById('watching-start-label');
         this.renderFieldsUponSelectedMovieType();
         this.renderFiledsUponSelectedMovieTypeChange();
         this.movie.addEventListener('change', (e) => {
@@ -31,6 +32,7 @@ export class MovieSelector {
             this.watching_season.classList.add('input-wrapper-closed');
             this.last_episode.classList.remove('input-wrapper-open');
             this.last_episode.classList.add('input-wrapper-closed');
+            this.watching_start_label.innerText = "Watched at";
         }
     }
 
@@ -48,6 +50,7 @@ export class MovieSelector {
             this.watching_season.classList.add('input-wrapper-open');
             this.last_episode.classList.remove('input-wrapper-closed');
             this.last_episode.classList.add('input-wrapper-open');
+            this.watching_start_label.innerText = "Watching start";
             return true;
         }
     }

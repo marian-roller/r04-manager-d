@@ -45,7 +45,7 @@
             </div>
 
             <div class="field form-group mb-4">
-              <%= form.label :watching_start, mymovie.movie.movie_type == 1 ? "Watched at" : "Watching start", class: 'font-weight-bold text-muted small' %>
+              <%= form.label :watching_start, "Watched at", class: 'font-weight-bold text-muted small', id: 'watching-start-label' %>
               <br>
               <div class="d-flex">
                 <%= form.date_select :watching_start,
