@@ -11,17 +11,19 @@ export class imdbApi
 
     imdbApiSearch (value)
     {
-        console.log(value)
         const data = null;
         const xhr = new XMLHttpRequest();
         // fix this credentials!!!:
         // xhr.withCredentials = true;
 
         let posters_container = document.getElementById('posters-container');
+        posters_container.innerHTML = '';
 
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
 
+                posters_container.classList.remove('d-none');
+                posters_container.classList.add('d-flex');
                 let result = this.responseText
                 let resultObject = JSON.parse(result);
                 let resultObjectSearch = resultObject["Search"];

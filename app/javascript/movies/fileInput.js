@@ -5,10 +5,10 @@ export class FileInput {
         this.previewImageContainer = document.getElementById('preview-image-container');
         this.existingImage = document.getElementById("existing-image");
         this.removePosterFieldGroup = document.getElementById("remove-poster-field-group");
+        this.posters_container = document.getElementById('posters-container');
         this.posterFileInput.addEventListener('change', (e) => {
             return this.handlePreviewImage(e);
         })
-        console.log(this.removePosterFieldGroup);
     }
 
     handlePreviewImage (e)
@@ -26,5 +26,8 @@ export class FileInput {
             this.existingImage.classList.add('d-none');
             this.removePosterFieldGroup.classList.add('d-none');
         }
+        this.posters_container.classList.remove('d-flex');
+        this.posters_container.classList.add('d-none');
+        this.posters_container.innerHTML = '';
     }
 }
