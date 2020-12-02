@@ -58,6 +58,15 @@
 
 // INDEX PAGE//
 #movies-index-page {
+
+    .single-movie-item {
+      max-width: 210px;
+      @media (max-width: 506px) {
+        max-width: fit-content;
+        margin: auto;
+      }
+    }
+
   .movie-button {
     line-height: 1.5;
     font-size: .87rem;
