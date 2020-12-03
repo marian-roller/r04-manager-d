@@ -11,7 +11,7 @@
 
       <div>
         <%= link_to 'Movies', onlymovies_path,
-                    class: "btn btn-info mx-3 my-1 h6 m-0 movie-button #{ 'btn-sm' unless @onlymovies}  #{'active font-weight-bold border-button' if @onlymovies}" %>
+                    class: "btn btn-info mx-2 my-1 h6 m-0 movie-button #{ 'btn-sm' unless @onlymovies}  #{'active font-weight-bold border-button' if @onlymovies}" %>
         <%= link_to 'Tv series', onlytvseries_path,
                     class: "btn btn-info mx-2 my-1 h6 m-0 movie-button #{'btn-sm' unless @onlytvseries }  #{'active font-weight-bold border-button' if @onlytvseries}" %>
       </div>
@@ -36,6 +36,12 @@
             <%= link_to movie, class: '' do %>
               <% if movie.image.attached? %>
                 <%= image_tag movie.image, class: 'card-img-top p-2 bg-secondary' %>
+              <% else %>
+                <div class="image-replacement d-flex justify-content-center align-items-center">
+                  <div class="text-light">
+                    No poster
+                  </div>
+                </div>
               <% end %>
             <% end %>
 
