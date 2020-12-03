@@ -60,10 +60,15 @@
 #movies-index-page {
 
     .single-movie-item {
-      max-width: 210px;
+      width: 210px;
       @media (max-width: 506px) {
-        max-width: fit-content;
+        width: -webkit-fill-available;
         margin: auto;
+      }
+      .image-replacement {
+        border-radius: .15rem;
+        background: grey;
+        height: 280px;
       }
     }
 
