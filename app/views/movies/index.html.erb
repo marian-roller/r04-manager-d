@@ -77,18 +77,11 @@
                   <% if movie.users.where(id: current_user.id).first %>
                     <div class="btn btn-sm my-1 btn-outline-primary btn-block disabled">Added</div>
                   <% else %>
-                    <%= form_with(model: @mymovie, local: true) do |form| %>
-
-                      <div class="field">
-                        <%= form.hidden_field :movie_id, :value => movie.id %>
-                        <%= form.hidden_field :status, :value => "1" %>
-                      </div>
-
-                      <div>
-                        <%= form.submit "Add to my list", class: 'my-1 btn btn-primary btn-sm btn-block' %>
-                      </div>
-
-                    <% end %>
+                    <a href="#"
+                       class="my-1 btn btn-primary btn-sm btn-block"
+                       data-reflex="click->MymovieReflex#create_mymovie"
+                       data-movie-id="<%= movie.id %>"
+                    >Add to my list</a>
                   <% end %>
                 <% end %>
               </div>

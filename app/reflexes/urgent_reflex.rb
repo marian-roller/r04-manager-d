@@ -23,14 +23,14 @@ class UrgentReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com
   #
 
-  def urgent
-    mymovie = Mymovie.find(element.dataset[:mymovie_id])
-    mymovie.update(urgent: true)
-  end
-
-  def noturgent
-    mymovie = Mymovie.find(element.dataset[:mymovie_id])
-    mymovie.update(urgent: false)
-  end
+  # def urgent
+  #   mymovie = Mymovie.find(element.dataset[:mymovie_id])
+  #   mymovie.update(urgent: true)
+  # end
+  #
+  # def noturgent
+  #   mymovie = Mymovie.find(element.dataset[:mymovie_id])
+  #   mymovie.update(urgent: false)
+  # end
 
 end
