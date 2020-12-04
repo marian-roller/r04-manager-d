@@ -62,6 +62,16 @@ class MymovieStatusReflex < ApplicationReflex
     mymovie.update(status: 3, watching_start: now)
   end
 
+  def urgent
+    mymovie = Mymovie.find(element.dataset[:mymovie_id])
+    mymovie.update(urgent: true)
+  end
+
+  def noturgent
+    mymovie = Mymovie.find(element.dataset[:mymovie_id])
+    mymovie.update(urgent: false)
+  end
+
   private
 
   def set_mymovie

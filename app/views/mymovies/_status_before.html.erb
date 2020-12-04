@@ -37,13 +37,13 @@
       <% if mymovie.urgent? %>
         <a href="#"
            class="btn btn-secondary btn-sm btn-block "
-           data-reflex="click->UrgentReflex#noturgent"
+           data-reflex="click->MymovieStatusReflex#noturgent"
            data-mymovie-id="<%= mymovie.id %>"
         >Make not urgent</a>
       <% else %>
         <a href="#"
            class="btn btn-dark btn-sm btn-block"
-           data-reflex="click->UrgentReflex#urgent"
+           data-reflex="click->MymovieStatusReflex#urgent"
            data-mymovie-id="<%= mymovie.id %>"
         >Make urgent</a>
       <% end %>

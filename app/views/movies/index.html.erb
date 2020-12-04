@@ -77,6 +77,7 @@
                   <% if movie.users.where(id: current_user.id).first %>
                     <div class="btn btn-sm my-1 btn-outline-primary btn-block disabled">Added</div>
                   <% else %>
+
                     <%= form_with(model: @mymovie, local: true) do |form| %>
 
                       <div class="field">
