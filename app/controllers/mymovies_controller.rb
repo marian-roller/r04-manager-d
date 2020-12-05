@@ -69,8 +69,13 @@ class MymoviesController < ApplicationController
 
   # DELETE /mymovies/1
   def destroy
+    movie_type = @mymovie.movie.movie_type
     @mymovie.destroy
-    redirect_to mymovies_url, notice: 'Mymovie was successfully destroyed.'
+    if movie_type == 1
+      redirect_to mymovies_url, notice: 'Mymovie was successfully destroyed.'
+    else
+      redirect_to myonlytvseries_url, notice: 'Mymovie was successfully destroyed.'
+    end
   end
 
   private

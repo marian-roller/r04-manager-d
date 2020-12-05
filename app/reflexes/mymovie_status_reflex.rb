@@ -32,7 +32,7 @@ class MymovieStatusReflex < ApplicationReflex
   end
 
   def update_episodes_link
-    updated_params = mymovie.update_episode_season_status
+    updated_params = @mymovie.update_episode_season_status
     @mymovie.update(updated_params)
   end
 
