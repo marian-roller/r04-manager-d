@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+* {
+  //border: 1px solid black;
+}
+
 .my-movies-card-header {
   background: #c6d880;
 }
@@ -16,4 +20,8 @@
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.info-data {
+  font-size: 12px;
 }
