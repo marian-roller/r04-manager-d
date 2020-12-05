@@ -84,6 +84,10 @@
             <div class="field form-group mb-4 transition-group" id="watching-season-field-group">
               <%= form.label :watching_season, class: 'font-weight-bold text-muted small' %>
               <%= form.number_field :watching_season, class: 'form-control form-control-sm' %>
+
+              <!--  left for api requests feature-->
+              <%#= form.select :watching_season, options_for_select(1..(mymovie.movie ? mymovie.movie.seasons.size : 100), mymovie.watching_season), {include_blank: "-- No. of season --"}, {class: 'form-control form-control-sm'}   %>
+
             </div>
 
             <div class="field form-group mb-4 transition-group" id="last-episode-field-group">

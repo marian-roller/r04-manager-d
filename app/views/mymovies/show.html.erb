@@ -36,17 +36,22 @@
             <% end %>
           </div>
 
-          <div>
-            <%= "8,7" %>
-          </div>
+          <% if @mymovie.movie.ranking_avg %>
+            <div>
+              <small><%= "Ranking: " + @mymovie.movie.ranking_avg.to_s %></small>
+            </div>
+          <% end %>
 
           <div>
             <%= "#{@mymovie.movie.year_start}" + "#{' - ' if @mymovie.movie.movie_type == 2 }"  + "#{@mymovie.movie.year_end}" %>
           </div>
 
-          <div>
-            <%= "#{@mymovie.movie.duration}" + " min"%>
-          </div>
+          <% if @mymovie.movie.duration %>
+            <div>
+              <small><%= "#{@mymovie.movie.duration}" + " min"%></small>
+            </div>
+          <% end %>
+
         </div>
 
         <div class="p-2">
