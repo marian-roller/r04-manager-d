@@ -1,11 +1,11 @@
 <div class="card-body rounded during-mymovies">
   <div class="">
-    <div class="d-flex mb-2">
-      <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold text-decoration-none' %>
-    </div>
+    <% if mymovie.movie.movie_type == 2 %>
+      <div class="d-flex mb-2">
+        <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold text-decoration-none' %>
+      </div>
 
-    <div class="mb-1">
-      <% if mymovie.movie.movie_type == 2 %>
+      <div class="mb-1">
         <div class="row">
           <div class="col-sm-4">
             <div class="card bg-light h-100">
@@ -53,40 +53,72 @@
             </div>
           </div>
         </div>
+      </div>
+    <% end %>
 
+    <% if mymovie.movie.movie_type == 1 %>
 
+      <div class="container-fluid px-0">
+        <div class="row mx-0">
 
+          <div class="col-2 p-0">
+            <% if mymovie.movie.image.attached? %>
+              <%= image_tag mymovie.movie.image, class: 'card-img-top' %>
+            <% else %>
+              <div class="image-replacement d-flex justify-content-center align-items-center bg-secondary h-100">
+                <div class="text-light">
+                  <small>No poster</small>
+                </div>
+              </div>
+            <% end %>
+          </div>
 
+          <div class="col-10 d-flex flex-column justify-content-between pr-0">
+            <div>
+              <div class="d-flex mb-2">
+                <%= link_to mymovie.movie.title, mymovie, class: 'font-weight-bold text-decoration-none' %>
+              </div>
+            </div>
+            <div>
+              <div class="d-flex justify-content-end mt-3">
 
+                <div>
+                  <a href="#"
+                     class="btn btn-dark btn-sm mr-1 button-custom"
+                     data-reflex="click->MymovieStatusReflex#mark_as_watched"
+                     data-mymovie-id="<%= mymovie.id %>"
+                  >Mark as watched</a>
+                </div>
 
+                <div>
+                  <a href="#"
+                     class="btn btn-dark btn-sm button-custom"
+                     data-reflex="click->MymovieStatusReflex#drop_watching"
+                     data-mymovie-id="<%= mymovie.id %>"
+                  >Drop</a>
+                </div>
 
+              </div>
 
-      <% end %>
-    </div>
+            </div>
 
+          </div>
+        </div>
+      </div>
 
+    <% end %>
 
-
-
-
-
-    <div class="d-flex justify-content-end mt-3">
-      <% if mymovie.movie.movie_type == 1 %>
+    <% if mymovie.movie.movie_type == 2 %>
+      <div class="d-flex justify-content-end mt-3">
         <div>
           <a href="#"
-             class="btn btn-dark btn-sm mr-1 button-custom"
-             data-reflex="click->MymovieStatusReflex#mark_as_watched"
+             class="btn btn-dark btn-sm button-custom"
+             data-reflex="click->MymovieStatusReflex#drop_watching"
              data-mymovie-id="<%= mymovie.id %>"
-          >Mark as watched</a>
+          >Drop</a>
         </div>
-      <% end %>
-      <div>
-        <a href="#"
-           class="btn btn-dark btn-sm button-custom"
-           data-reflex="click->MymovieStatusReflex#drop_watching"
-           data-mymovie-id="<%= mymovie.id %>"
-        >Drop</a>
       </div>
-    </div>
+    <% end %>
+
   </div>
 </div>
