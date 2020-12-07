@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between align-items-center card-header">
 
     <div>
-      <%= link_to @mymovie.movie, class: '' do %>
+      <%= link_to @mymovie.movie, class: 'text-decoration-none' do %>
         <h1> <%= @mymovie.movie.title %></h1>
       <% end %>
     </div>
@@ -20,6 +20,18 @@
   <div class="card-body">
     <div class="row p-3">
       <div class="col-md-6">
+        <% if @mymovie.movie.image.attached? %>
+          <div class="d-flex justify-content-center">
+            <%= image_tag @mymovie.movie.image, class: 'w-75' %>
+          </div>
+        <% else %>
+          <div class="image-replacement d-flex justify-content-center align-items-center">
+            <div class="text-light">
+              No poster
+            </div>
+          </div>
+        <% end %>
+
       </div>
 
       <div class="col-md-6">
