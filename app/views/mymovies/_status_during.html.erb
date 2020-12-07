@@ -10,7 +10,7 @@
           <div class="col-sm-4">
             <div class="card bg-light h-100">
               <div class="card-header">Watched:</div>
-              <div class="card-body info-data d-flex flex-column justify-content-center">
+              <div class="card-body info-data d-flex flex-column justify-content-center p-2">
                 <div>Season: <%= mymovie.watching_season %> <small>(<%= mymovie.movie.seasons.size %>)</small></div>
                 <div>Episode: <%= mymovie.last_episode %> <small>(<%= mymovie.get_current_season_episodes %>)</small></div>
               </div>
@@ -46,7 +46,7 @@
           <div class="col-sm-4">
             <div class="card bg-light h-100">
               <div class="card-header">Watch now:</div>
-              <div class="card-body d-flex flex-column justify-content-center">
+              <div class="card-body d-flex flex-column justify-content-center p-2">
                 <div>Season: <%= mymovie.watching_season %></div>
                 <div class="bg-info text-white px-1 rounded font-weight-bold">Episode: <%= mymovie.last_episode + 1 %></div>
               </div>

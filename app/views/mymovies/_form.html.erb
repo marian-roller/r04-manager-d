@@ -39,10 +39,12 @@
               <%= form.hidden_field :status, :value => "1" %>
             <% end %>
 
-            <div class="field form-group mb-4">
-              <%= form.check_box :urgent %>
-              <%= form.label :urgent, class: 'font-weight-bold text-muted small' %>
-            </div>
+            <% if mymovie.status == 1 || mymovie.status == 2 %>
+              <div class="field form-group mb-4">
+                <%= form.check_box :urgent %>
+                <%= form.label :urgent, class: 'font-weight-bold text-muted small' %>
+              </div>
+            <% end %>
 
             <div class="field form-group mb-4">
               <%= form.label :watching_start, "Watched at", class: 'font-weight-bold text-muted small', id: 'watching-start-label' %>
@@ -76,10 +78,12 @@
               <%= form.number_field :times_watched, class: 'form-control form-control-sm' %>
             </div>
 
-            <div class="field form-group mb-4">
-              <%= form.label :ranking, class: 'font-weight-bold text-muted small' %>
-              <%= form.select :ranking, options_for_select(1..10, mymovie.ranking), {include_blank: "-- My ranking --"}, {class: 'form-control form-control-sm'}   %>
-            </div>
+            <% if mymovie.status == 3 %>
+              <div class="field form-group mb-4">
+                <%= form.label :ranking, class: 'font-weight-bold text-muted small' %>
+                <%= form.select :ranking, options_for_select(1..10, mymovie.ranking), {include_blank: "-- My ranking --"}, {class: 'form-control form-control-sm'}   %>
+              </div>
+            <% end %>
 
             <div class="field form-group mb-4 transition-group" id="watching-season-field-group">
               <%= form.label :watching_season, class: 'font-weight-bold text-muted small' %>

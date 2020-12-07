@@ -22,7 +22,12 @@
           <div class="d-flex justify-content-center">
             <%= image_tag @movie.image, class: 'w-75' %>
           </div>
-
+        <% else %>
+          <div class="image-replacement d-flex justify-content-center align-items-center">
+            <div class="text-light">
+              No poster
+            </div>
+          </div>
         <% end %>
       </div>
 

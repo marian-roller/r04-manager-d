@@ -57,7 +57,7 @@
 
 
 // INDEX PAGE//
-#movies-index-page {
+#movies-index-page, #movies-show-page, #mymovies-show-page {
 
     .single-movie-item {
       width: 210px;
@@ -65,12 +65,13 @@
         width: -webkit-fill-available;
         margin: auto;
       }
-      .image-replacement {
-        border-radius: .15rem;
-        background: grey;
-        height: 280px;
-      }
     }
+
+  .image-replacement {
+    border-radius: .15rem;
+    background: grey;
+    height: 280px;
+  }
 
   .movie-button {
     line-height: 1.5;
@@ -82,3 +83,5 @@
   }
 }
 // END INDEX PAGE //
+
+
