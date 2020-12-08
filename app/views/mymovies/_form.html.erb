@@ -17,6 +17,18 @@
         <div class="row p-3">
 
           <div class="col-md-6">
+            <% if mymovie.movie && mymovie.movie.image.attached? %>
+              <div class="d-flex justify-content-center">
+                <%= image_tag mymovie.movie.image, class: 'w-75' %>
+              </div>
+            <% else %>
+              <div class="image-replacement d-flex justify-content-center align-items-center">
+                <div class="text-light">
+                  No poster
+                </div>
+              </div>
+            <% end %>
+
           </div>
 
           <div class="col-md-6">
@@ -87,16 +99,20 @@
 
             <div class="field form-group mb-4 transition-group" id="watching-season-field-group">
               <%= form.label :watching_season, class: 'font-weight-bold text-muted small' %>
-              <%= form.number_field :watching_season, class: 'form-control form-control-sm' %>
+              <%#= form.number_field :watching_season, class: 'form-control form-control-sm' %>
 
               <!--  left for api requests feature-->
-              <%#= form.select :watching_season, options_for_select(1..(mymovie.movie ? mymovie.movie.seasons.size : 100), mymovie.watching_season), {include_blank: "-- No. of season --"}, {class: 'form-control form-control-sm'}   %>
+              <%= form.select :watching_season, options_for_select(1..(mymovie.movie ? mymovie.movie.seasons.size : 100), mymovie.watching_season), {include_blank: "-- No. of season --"}, {class: 'form-control form-control-sm', 'data-reflex' => 'change->MymovieReflex#episodes', 'data-mymovie-id' => mymovie.id } %>
 
             </div>
 
             <div class="field form-group mb-4 transition-group" id="last-episode-field-group">
               <%= form.label :last_episode, class: 'font-weight-bold text-muted small' %>
-              <%= form.number_field :last_episode, class: 'form-control form-control-sm' %>
+              <%#= form.number_field :last_episode, class: 'form-control form-control-sm' %>
+
+
+              <%= form.select :last_episode, options_for_select(1..(mymovie.movie ? mymovie.get_current_season_episodes : 100), mymovie.last_episode), {include_blank: "-- No. of last watched episode --"}, {class: 'form-control form-control-sm' } %>
+
             </div>
 
             <div class="field form-group mb-4 transition-group">
