@@ -1,5 +1,5 @@
 <div id="mymovies-form-page">
-  <%= form_with(model: mymovie, local: true) do |form| %>
+  <%= form_with(model: mymovie, local: true ) do |form| %>
     <div id="mymovie-form">
 
       <% if mymovie.errors.any? %>
@@ -106,14 +106,15 @@
 
             </div>
 
-            <div class="field form-group mb-4 transition-group" id="last-episode-field-group">
-              <%= form.label :last_episode, class: 'font-weight-bold text-muted small' %>
-              <%#= form.number_field :last_episode, class: 'form-control form-control-sm' %>
+            <% if mymovie.movie %>
+              <div class="field form-group mb-4 transition-group" id="last-episode-field-group">
+                <%= form.label :last_episode, class: 'font-weight-bold text-muted small' %>
+                <%#= form.number_field :last_episode, class: 'form-control form-control-sm' %>
 
+                <%= form.select :last_episode, options_for_select(1..(mymovie.watching_season ? mymovie.get_current_season_episodes : 100), mymovie.last_episode), {include_blank: "-- No. of last watched episode --"}, {class: 'form-control form-control-sm' } %>
 
-              <%= form.select :last_episode, options_for_select(1..(mymovie.movie ? mymovie.get_current_season_episodes : 100), mymovie.last_episode), {include_blank: "-- No. of last watched episode --"}, {class: 'form-control form-control-sm' } %>
-
-            </div>
+              </div>
+            <% end %>
 
             <div class="field form-group mb-4 transition-group">
               <%= form.label :impression, class: 'font-weight-bold text-muted small' %>

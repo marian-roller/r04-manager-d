@@ -16,11 +16,20 @@ export default class extends ApplicationController {
    * call super if you intend to do anything else when this controller connects.
   */
 
+  // static targets = ['trix_holder'];
+
   connect () {
     super.connect()
-    // add your code here, if applicable
   }
 
+  // beforeReflex() {
+  //   this.trixHtml = this.trix_holderTarget.innerHTML
+  //   console.log(this.trixHtml);
+  // }
+  //
+  // afterReflex() {
+  //   this.trix_holderTarget.innerHTML = this.trixHtml
+  // }
   /* Reflex specific lifecycle methods.
    *
    * For every method defined in your Reflex class, a matching set of lifecycle methods become available
