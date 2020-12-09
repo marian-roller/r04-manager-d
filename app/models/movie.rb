@@ -33,7 +33,6 @@ class Movie < ApplicationRecord
   def update_ranking
     ranked_mymovies = self.get_mymovies_status_watched
     number_of_mymovies = ranked_mymovies.size
-    puts "AAAAAAAAAAAAAAAAAAAAAAa: " + number_of_mymovies.inspect
     total_ranking_points = self.get_total_ranking_points ranked_mymovies
     new_ranking = self.calculate_new_ranking number_of_mymovies, total_ranking_points
     self.update(ranking_avg: new_ranking)
