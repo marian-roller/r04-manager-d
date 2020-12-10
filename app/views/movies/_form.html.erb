@@ -37,7 +37,8 @@
               </div>
             <% end %>
 
-            <div id="posters-container" class="d-none flex-wrap"></div>
+            <div id="posters-container" class="d-none flex-wrap">
+            </div>
           </div>
           <div class="col-md-6">
 
@@ -93,7 +94,7 @@
 
             <div class="field form-group mb-4" id="year-start-field-group">
               <%= form.label :year_start, class: 'font-weight-bold text-muted small' %>
-              <%= form.select :year_start, options_for_select(1895..2030, movie.year_start), {include_blank: "-- Choose year --"}, {class: 'form-control form-control-sm'}   %>
+              <%= form.select :year_start, options_for_select(1895..2030, movie.year_start), {include_blank: "-- Choose year --"}, {class: 'form-control form-control-sm', id: 'year-start'}   %>
             </div>
 
             <div class="field form-group mb-4 transition-group" id="year-end-field-group">
