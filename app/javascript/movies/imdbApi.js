@@ -17,6 +17,7 @@ export class imdbApi
         // xhr.withCredentials = true;
 
         let posters_container = document.getElementById('posters-container');
+        let year_start = document.getElementById('year-start');
         posters_container.innerHTML = '';
 
         xhr.addEventListener("readystatechange", function () {
@@ -29,6 +30,7 @@ export class imdbApi
                 let resultObjectSearch = resultObject["Search"];
 
                 for (let x in resultObjectSearch) {
+
                     let figcaptionTag = document.createElement("figcaption");
                     figcaptionTag.innerText = resultObjectSearch[x].Title;
                     let imageTag = document.createElement("img");
@@ -38,6 +40,10 @@ export class imdbApi
                     linkTag.classList.add('poster-link-container');
                     linkTag.href = "#";
                     // linkTag.download = resultObjectSearch[x].Poster;
+                    linkTag.addEventListener('contextmenu', (e) => {
+                        year_start.value = resultObjectSearch[x].Year;
+                        console.log(resultObjectSearch[x].Year);
+                    })
                     figureTag.classList.add('poster-figure');
                     imageTag.classList.add('poster-image');
                     figcaptionTag.classList.add('poster-figcaption');
