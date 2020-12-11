@@ -18,6 +18,16 @@ class Movie < ApplicationRecord
   attr_accessor :remove_image
   after_save :purge_image
 
+  def self.search(search)
+    if (search)
+      # @movies = Movie.find_by(title: search)
+      @movies = self.where(title: search)
+    else
+      @movies = Movie.all
+    end
+
+  end
+
   def total_episodes
     if seasons.size
       episodes = 0
@@ -60,7 +70,6 @@ class Movie < ApplicationRecord
     else
       nil
     end
-
   end
 
   private def purge_image

@@ -4,9 +4,17 @@ class MoviesController < ApplicationController
 
   # GET /movies
   def index
+
+    # abort params.inspect
     @movies = Movie.order('title').all
     @allmovies = true
     @mymovie = Mymovie.new
+
+    @movies = Movie.search(params[:search])
+
+    # abort @movies.inspect
+
+
   end
 
   # GET /onlymovies
@@ -81,6 +89,6 @@ class MoviesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def movie_params
-      params.require(:movie).permit(:image, :remove_image, :title, :original_title, :movie_type, :description, :year_start, :year_end, :duration, seasons_attributes: [:id, :season_no, :episodes, :_destroy])
+      params.require(:movie).permit(:search, :image, :remove_image, :title, :original_title, :movie_type, :description, :year_start, :year_end, :duration, seasons_attributes: [:id, :season_no, :episodes, :_destroy])
     end
 end

@@ -27,6 +27,12 @@
 
   <div class="card-body">
 
+    <%= form_tag movies_path, :method => "get" do %>
+      <%= label_tag(:search, "Search") %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag("Search" ) %>
+    <% end %>
+
     <div class="d-flex flex-wrap justify-content-left">
       <% @movies.each do |movie| %>
 
