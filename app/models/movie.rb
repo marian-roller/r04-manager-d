@@ -18,14 +18,16 @@ class Movie < ApplicationRecord
   attr_accessor :remove_image
   after_save :purge_image
 
-  def self.search(search)
+  def self.search(search, movie_type)
     if (search)
-      # @movies = Movie.find_by(title: search)
-      @movies = self.where(title: search)
+      if movie_type
+        @movies = self.where("LOWER(title) like ? and movie_type = #{movie_type}", "%#{search.downcase}%" )
+      else
+        @movies = self.where("LOWER(title) like ?", "%#{search.downcase}%" )
+      end
     else
       @movies = Movie.all
     end
-
   end
 
   def total_episodes

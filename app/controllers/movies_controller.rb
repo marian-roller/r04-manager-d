@@ -4,22 +4,20 @@ class MoviesController < ApplicationController
 
   # GET /movies
   def index
-
-    # abort params.inspect
-    @movies = Movie.order('title').all
     @allmovies = true
     @mymovie = Mymovie.new
-
-    @movies = Movie.search(params[:search])
-
-    # abort @movies.inspect
-
-
+    @movies = Movie.search(params[:search], params[:movie_type]).order('title')
   end
 
   # GET /onlymovies
   def onlyMovies
-    @movies = Movie.where(movie_type: '1').order('title').all
+
+    if params[:search]
+      @movies = Movie.search(params[:search], params[:movie_type]).order('title')
+    else
+      @movies = Movie.where(movie_type: '1').order('title').all
+    end
+
     @onlymovies = true
     @mymovie = Mymovie.new
     render :index
@@ -27,7 +25,13 @@ class MoviesController < ApplicationController
 
   # GET /onlytvseries
   def onlyTvseries
-    @movies = Movie.where(movie_type: '2').order('title').all
+
+    if params[:search]
+      @movies = Movie.search(params[:search], params[:movie_type]).order('title')
+    else
+      @movies = Movie.where(movie_type: '2').order('title').all
+    end
+
     @onlytvseries = true
     @mymovie = Mymovie.new
     render :index
