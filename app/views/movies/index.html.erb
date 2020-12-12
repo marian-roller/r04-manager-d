@@ -28,12 +28,26 @@
   <div class="card-body">
 
     <%= form_tag movies_path, :method => "get" do %>
-      <%= label_tag(:search, "Search") %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag("Search" ) %>
+      <div class="form-row">
+        <div class="col-md-10">
+          <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm' %>
+        </div>
+
+        <% if @onlymovies %>
+          <%= hidden_field_tag :movie_type, params[:movie_type], :value => "1" %>
+        <% end %>
+
+        <% if @onlytvseries %>
+          <%= hidden_field_tag :movie_type, params[:movie_type], :value => "2" %>
+        <% end %>
+
+        <div class="col-md-2">
+          <%= submit_tag "Search for movie", class: 'btn btn-info btn-block btn-sm'   %>
+        </div>
+      </div>
     <% end %>
 
-    <div class="d-flex flex-wrap justify-content-left">
+    <div class="d-flex flex-wrap justify-content-left mt-3">
       <% @movies.each do |movie| %>
 
         <div class="single-movie-item p-2">
