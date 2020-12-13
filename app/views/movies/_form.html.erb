@@ -99,7 +99,7 @@
 
             <div class="field form-group mb-4 transition-group" id="year-end-field-group">
               <%= form.label :year_end, class: 'font-weight-bold text-muted small' %>
-              <%= form.select :year_end, options_for_select(1895..2030, movie.year_end),  {include_blank: "-- Choose year --"}, {class: 'form-control form-control-sm'}   %>
+              <%= form.select :year_end, options_for_select(1895..2030, movie.year_end),  {include_blank: "-- Choose year --"}, {class: 'form-control form-control-sm', id: 'year-end'} %>
             </div>
 
             <div class="field form-group mb-4" id="duration-field-group">
