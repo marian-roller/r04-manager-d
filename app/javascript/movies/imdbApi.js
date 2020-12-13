@@ -18,6 +18,7 @@ export class imdbApi
 
         let posters_container = document.getElementById('posters-container');
         let year_start = document.getElementById('year-start');
+        let year_end = document.getElementById('year-end');
         posters_container.innerHTML = '';
 
         xhr.addEventListener("readystatechange", function () {
@@ -41,9 +42,18 @@ export class imdbApi
                     linkTag.href = "#";
                     // linkTag.download = resultObjectSearch[x].Poster;
                     linkTag.addEventListener('contextmenu', (e) => {
-                        year_start.value = resultObjectSearch[x].Year;
-                        console.log(resultObjectSearch[x].Year);
-                    })
+                        const yearValue = resultObjectSearch[x].Year;
+
+                        if (yearValue.length === 4) {
+                            year_start.value = yearValue;
+                        } else {
+                            const years = yearValue.split(/[^0-9]/);
+                            year_start.value = years[0];
+                            if (years[1] !== "") {
+                                year_end.value = years[1];
+                            }
+                        }
+                    });
                     figureTag.classList.add('poster-figure');
                     imageTag.classList.add('poster-image');
                     figcaptionTag.classList.add('poster-figcaption');
@@ -60,4 +70,5 @@ export class imdbApi
         xhr.setRequestHeader("x-rapidapi-host", "movie-database-imdb-alternative.p.rapidapi.com");
         xhr.send(data);
     }
+
 }
