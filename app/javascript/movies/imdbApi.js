@@ -19,10 +19,12 @@ export class imdbApi
         let posters_container = document.getElementById('posters-container');
         let year_start = document.getElementById('year-start');
         let year_end = document.getElementById('year-end');
+        let instruction_container = document.getElementById('instruction-container');
         posters_container.innerHTML = '';
 
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
+                instruction_container.innerText = "Choose the right poster";
 
                 posters_container.classList.remove('d-none');
                 posters_container.classList.add('d-flex');
@@ -42,6 +44,8 @@ export class imdbApi
                     linkTag.href = "#";
                     // linkTag.download = resultObjectSearch[x].Poster;
                     linkTag.addEventListener('contextmenu', (e) => {
+                        year_start.value = '';
+                        year_end.value = '';
                         const yearValue = resultObjectSearch[x].Year;
 
                         if (yearValue.length === 4) {

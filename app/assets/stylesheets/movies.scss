@@ -36,6 +36,13 @@
     cursor: pointer;
   }
 
+  #instruction-container {
+    color: red;
+    border: 3px solid red;
+    border-radius: 3px;
+    text-align: center;
+  }
+
   #posters-container {
     .poster-link-container {
       width: 50%;
