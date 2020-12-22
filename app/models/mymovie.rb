@@ -25,10 +25,10 @@ class Mymovie < ApplicationRecord
 
   def watching_end_date_scope
     if watching_end.present? && watching_end < Date.parse('01-01-2015')
-      errors.add(:watching_end, "too log time ago")
+      errors.add(:watching_end, "too long time ago")
     end
     if watching_end.present? && watching_end > Date.parse('31-12-2030')
-      errors.add(:watching_end, "too much in the future")
+      errors.add(:watching_end, "too much time in the future")
     end
   end
 
@@ -42,6 +42,7 @@ class Mymovie < ApplicationRecord
   def update_episode_season_status
 
     # my movie params for updating
+    watching_end = nil
     status = self.status
     current_season_no = self.watching_season
     current_episode_no = self.last_episode
@@ -59,9 +60,11 @@ class Mymovie < ApplicationRecord
     # last episode in season update
     if current_episode_no == current_season_object_episodes - 1
       if current_season_no == total_seasons
+        now = Time.now.strftime("%d-%m-%Y")
         # last episode in last season update
         episode = self.last_episode + 1
         status = 3
+        watching_end = now
       else
         current_season_no += 1
         episode = 0
@@ -71,7 +74,9 @@ class Mymovie < ApplicationRecord
     data = {
         "status" => status,
         "watching_season"=> current_season_no,
-        "last_episode"=> episode
+        "last_episode"=> episode,
+        "watching_end" => watching_end
+
     }
   end
 
