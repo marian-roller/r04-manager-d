@@ -28,7 +28,6 @@
                 </div>
               </div>
             <% end %>
-
           </div>
 
           <div class="col-md-6">
@@ -58,8 +57,8 @@
               </div>
             <% end %>
 
-            <div class="field form-group mb-4">
-              <%= form.label :watching_start, "Watched at", class: 'font-weight-bold text-muted small', id: 'watching-start-label' %>
+            <div class="field form-group mb-4 transition-group" id="watching-start-field-group">
+              <%= form.label :watching_start, class: 'font-weight-bold text-muted small', id: 'watching-start-label' %>
               <br>
               <div class="d-flex">
                 <%= form.date_select :watching_start,
@@ -72,8 +71,8 @@
 
             </div>
 
-            <div class="field form-group mb-4 transition-group" id="watching-end-field-group">
-              <%= form.label :watching_end, class: 'font-weight-bold text-muted small' %>
+            <div class="field form-group mb-4" id="watching-end-field-group">
+              <%= form.label :watching_end, "Watched at", class: 'font-weight-bold text-muted small', id: 'watching-end-label' %>
               <br>
               <div class="d-flex">
                 <%= form.date_select :watching_end,
@@ -97,22 +96,20 @@
               </div>
             <% end %>
 
-            <div class="field form-group mb-4 transition-group" id="watching-season-field-group">
-              <%= form.label :watching_season, class: 'font-weight-bold text-muted small' %>
-              <%#= form.number_field :watching_season, class: 'form-control form-control-sm' %>
-
-              <!--  left for api requests feature-->
-              <%= form.select :watching_season, options_for_select(1..(mymovie.movie ? mymovie.movie.seasons.size : 100), mymovie.watching_season), {include_blank: "-- No. of season --"}, {class: 'form-control form-control-sm', 'data-reflex' => 'change->MymovieReflex#episodes', 'data-mymovie-id' => mymovie.id } %>
-
-            </div>
-
             <% if mymovie.movie %>
+              <div class="field form-group mb-4 transition-group" id="watching-season-field-group">
+                <%= form.label :watching_season, class: 'font-weight-bold text-muted small' %>
+                <%#= form.number_field :watching_season, class: 'form-control form-control-sm' %>
+
+                <!--  left for api requests feature-->
+                <%= form.select :watching_season, options_for_select(1..(mymovie.movie ? mymovie.movie.seasons.size : 100), mymovie.watching_season), {include_blank: "-- No. of season --"}, {class: 'form-control form-control-sm', 'data-reflex' => 'change->MymovieReflex#episodes', 'data-mymovie-id' => mymovie.id } %>
+              </div>
+
               <div class="field form-group mb-4 transition-group" id="last-episode-field-group">
                 <%= form.label :last_episode, class: 'font-weight-bold text-muted small' %>
                 <%#= form.number_field :last_episode, class: 'form-control form-control-sm' %>
 
                 <%= form.select :last_episode, options_for_select(1..(mymovie.watching_season ? mymovie.get_current_season_episodes : 100), mymovie.last_episode), {include_blank: "-- No. of last watched episode --"}, {class: 'form-control form-control-sm' } %>
-
               </div>
             <% end %>
 
