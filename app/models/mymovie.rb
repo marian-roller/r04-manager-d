@@ -46,6 +46,7 @@ class Mymovie < ApplicationRecord
     status = self.status
     current_season_no = self.watching_season
     current_episode_no = self.last_episode
+    times_watched = self.times_watched
 
     # seasons data for comparisons
     current_season_object = self.movie.seasons.where(season_no: current_season_no).first
@@ -60,12 +61,14 @@ class Mymovie < ApplicationRecord
     # last episode in season update
     if current_episode_no == current_season_object_episodes - 1
       if current_season_no == total_seasons
-        now = Time.now.strftime("%d-%m-%Y")
         # last episode in last season update
+        now = Time.now.strftime("%d-%m-%Y")
         episode = self.last_episode + 1
         status = 3
         watching_end = now
+        times_watched = self.update_times_watched
       else
+        # last episode in other seasons update
         current_season_no += 1
         episode = 0
       end
@@ -75,8 +78,8 @@ class Mymovie < ApplicationRecord
         "status" => status,
         "watching_season"=> current_season_no,
         "last_episode"=> episode,
-        "watching_end" => watching_end
-
+        "watching_end" => watching_end,
+        "times_watched" => times_watched
     }
   end
 
@@ -86,6 +89,14 @@ class Mymovie < ApplicationRecord
       current_season_object = self.movie.seasons.where(season_no: current_season_no).first
       current_season_object_episodes = current_season_object.episodes
     # end
+  end
+
+  def update_times_watched
+    if self.times_watched == nil
+      1
+    else
+      self.times_watched += 1
+    end
   end
 
 end

@@ -40,7 +40,8 @@ class MymovieStatusReflex < ApplicationReflex
 
   def mark_as_watched
     now = Time.now.strftime("%d-%m-%Y")
-    @mymovie.update(status: 3, watching_end: now)
+    times_watched = @mymovie.update_times_watched
+    @mymovie.update(status: 3, watching_end: now, times_watched: times_watched)
   end
 
   def urgent
