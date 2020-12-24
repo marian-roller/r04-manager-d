@@ -37,7 +37,7 @@
       <div class="col-md-6">
         <div class="bg-light p-2 border border-dark mb-2">
           <div>
-            <%= @mymovie.movie.original_title %>
+            <small><strong><%= @mymovie.movie.original_title %></strong></small>
           </div>
 
           <div>
@@ -48,19 +48,23 @@
             <% end %>
           </div>
 
+          <div>
+            <small><%= "#{@mymovie.movie.year_start}" + "#{' - ' if @mymovie.movie.movie_type == 2 }"  + "#{@mymovie.movie.year_end}" %></small>
+          </div>
+
           <% if @mymovie.movie.ranking_avg %>
             <div>
               <small><%= "Ranking: " + @mymovie.movie.ranking_avg.to_s %></small>
             </div>
           <% end %>
 
-          <div>
-            <%= "#{@mymovie.movie.year_start}" + "#{' - ' if @mymovie.movie.movie_type == 2 }"  + "#{@mymovie.movie.year_end}" %>
-          </div>
-
           <% if @mymovie.movie.duration %>
             <div>
-              <small><%= "#{@mymovie.movie.duration}" + " min"%></small>
+              <% if @mymovie.movie.movie_type == 1 %>
+                <small><%= "#{@mymovie.movie.duration}" + " min"%></small>
+              <% else %>
+                <small><%= "#{@mymovie.movie.duration}" + " min"%> (single episode approx. duration)</small>
+              <% end %>
             </div>
           <% end %>
 
@@ -70,7 +74,7 @@
 
           <div>
             <strong>Status:</strong>
-            <%= @mymovie.status %>
+            <%= Mymovie::STATUSES[@mymovie.status.to_s]  %>
           </div>
 
           <div>

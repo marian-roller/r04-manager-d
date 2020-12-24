@@ -14,6 +14,18 @@ class Mymovie < ApplicationRecord
   validate :watching_start_date_scope
   validate :watching_end_date_scope
 
+  # Mymovie status constants
+  STATUS_BEFORE = 1
+  STATUS_DURING = 2
+  STATUS_AFTER = 3
+  STATUS_DROPPED = 4
+  STATUSES = {
+    '1' => 'Before watching',
+    '2' => 'Watching now',
+    '3' => 'Finished watching',
+    '4' => 'Dropped'
+  }
+
   def watching_start_date_scope
     if watching_start.present? && watching_start < Date.parse('01-01-2015')
       errors.add(:watching_start, "too log time ago")
@@ -64,7 +76,7 @@ class Mymovie < ApplicationRecord
         # last episode in last season update
         now = Time.now.strftime("%d-%m-%Y")
         episode = self.last_episode + 1
-        status = 3
+        status = Mymovie::STATUS_AFTER
         watching_end = now
         times_watched = self.update_times_watched
       else
