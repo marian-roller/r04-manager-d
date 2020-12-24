@@ -29,7 +29,7 @@
             <h5>Watching now</h5>
           </div>
           <div class="">
-            <%= render partial: 'status_during', collection: @during = @mymovies.where(status: '2'), as: :mymovie %>
+            <%= render partial: 'status_during', collection: @during = @mymovies.where(status: Mymovie::STATUS_DURING), as: :mymovie %>
             <% if @during.size == 0 %>
               <div class="card-body"><small>Empty</small></div>
             <% end %>
@@ -41,7 +41,7 @@
             <h5>Waiting list</h5>
           </div>
             <div class="">
-              <%= render partial: 'status_before', collection: @before = @mymovies.where(status: '1'), as: :mymovie %>
+              <%= render partial: 'status_before', collection: @before = @mymovies.where(status: Mymovie::STATUS_BEFORE), as: :mymovie %>
               <% if @before.size == 0 %>
                 <div class="card-body"><small>Empty</small></div>
               <% end %>
@@ -56,7 +56,7 @@
             <h5>Completed</h5>
           </div>
           <div class="">
-            <%= render partial: 'status_after', collection: @after = @mymovies.where(status: '3'), as: :mymovie %>
+            <%= render partial: 'status_after', collection: @after = @mymovies.where(status: Mymovie::STATUS_AFTER), as: :mymovie %>
             <% if @after.size == 0 %>
               <div class="card-body"><small>Empty</small></div>
             <% end %>
@@ -67,7 +67,7 @@
           <div class="card-header">
             <h5>Dropped</h5>
           </div>
-          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: '4'), as: :mymovie %>
+          <%= render partial: 'status_dropped', collection: @dropped = @mymovies.where(status: Mymovie::STATUS_DROPPED), as: :mymovie %>
           <% if @dropped.size == 0 %>
             <div class="card-body"><small>Empty</small></div>
           <% end %>

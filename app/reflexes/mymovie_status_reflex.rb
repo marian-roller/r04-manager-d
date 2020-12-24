@@ -11,19 +11,19 @@ class MymovieStatusReflex < ApplicationReflex
   def start_watching
     now = Time.now.strftime("%d-%m-%Y")
     if @mymovie.movie.movie_type == 2
-      @mymovie.update(status: 2, watching_season: 1, last_episode: 0, watching_start: now)
+      @mymovie.update(status: Mymovie::STATUS_DURING, watching_season: 1, last_episode: 0, watching_start: now)
     else
-      @mymovie.update(status: 2)
+      @mymovie.update(status: Mymovie::STATUS_DURING)
     end
   end
 
   def restart_watching
-    @mymovie.update(status: 2)
+    @mymovie.update(status: Mymovie::STATUS_DURING)
   end
 
   def drop_watching
     now = Time.now.strftime("%d-%m-%Y")
-    @mymovie.update(status: 4, watching_end: now)
+    @mymovie.update(status: Mymovie::STATUS_DROPPED, watching_end: now)
   end
 
   # inactive method (originally used for form, requires allowing trusted parameters)
@@ -41,7 +41,7 @@ class MymovieStatusReflex < ApplicationReflex
   def mark_as_watched
     now = Time.now.strftime("%d-%m-%Y")
     times_watched = @mymovie.update_times_watched
-    @mymovie.update(status: 3, watching_end: now, times_watched: times_watched)
+    @mymovie.update(status: Mymovie::STATUS_AFTER, watching_end: now, times_watched: times_watched)
   end
 
   def urgent
