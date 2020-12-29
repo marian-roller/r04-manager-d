@@ -20,7 +20,7 @@
       <div class="col-md-6">
         <% if @movie.image.attached? %>
           <div class="d-flex justify-content-center">
-            <%= image_tag @movie.image, class: 'w-75' %>
+            <%= image_tag @movie.image, class: 'w-75 border' %>
           </div>
         <% else %>
           <div class="image-replacement d-flex justify-content-center align-items-center">
@@ -32,44 +32,49 @@
       </div>
 
       <div class="col-md-6">
-        <p>
-          <strong>Original title:</strong>
-          <%= @movie.original_title %>
-        </p>
+
+        <% if @movie.original_title %>
+          <p>
+            <strong>Original title:</strong>
+            <%= @movie.original_title %>
+          </p>
+        <% end %>
 
         <p>
           <strong>Type:</strong>
-          <%= @movie.movie_type %>
+          <%= Movie::TYPES[@movie.movie_type.to_s]  %>
         </p>
 
-        <p>
-          <strong>Description:</strong>
-          <%= @movie.description %>
-        </p>
-
-        <p>
-          <strong>Ranking avg:</strong>
-          <%= @movie.ranking_avg %>
-        </p>
+        <% if @movie.ranking_avg %>
+          <p>
+            <strong>Total ranking:</strong>
+            <%= @movie.ranking_avg %>
+          </p>
+        <% end %>
 
         <p>
           <strong>
-            <%= @movie.movie_type == 2 ? 'Year start: ' : 'Year: ' %>
+            <%= @movie.movie_type == Movie::TYPE_TVSERIE ? 'Year start: ' : 'Year: ' %>
           </strong>
           <%= @movie.year_start %>
         </p>
 
-        <% if @movie.movie_type == 2 %>
+        <% if @movie.movie_type == Movie::TYPE_TVSERIE %>
           <p>
             <strong>Year end:</strong>
             <%= @movie.year_end %>
           </p>
         <% end %>
 
-        <p>
-          <strong>Duration:</strong>
-          <%= @movie.duration %>
-        </p>
+        <% if @movie.duration %>
+          <p>
+            <strong>Duration:</strong>
+            <%= @movie.duration %> min.
+            <% if @movie.movie_type == Movie::TYPE_TVSERIE %>
+              (single episode approx. duration)
+            <% end %>
+          </p>
+        <% end %>
 
         <% if @movie.movie_type == 2 %>
           <div class="mb-3">
@@ -82,20 +87,30 @@
           </div>
         <% end %>
 
-        <div>
-          <small>
-          <strong>Added by: </strong><%= @movie.added_by.username %>
-          <strong> at: </strong><%= @movie.created_at.in_time_zone("Warsaw").strftime("%d-%m-%Y %H:%M") %>
-        </small>
-        </div>
+        <% if @movie.description %>
+          <p>
+            <strong>Description:</strong>
+            <%= @movie.description %>
+          </p>
+        <% end %>
 
-
-        <div><small>
-          <strong>Last updated by: </strong> <%= @movie.updated_by.username %>
-          <strong> at: </strong><%= @movie.updated_at.in_time_zone("Warsaw").strftime("%d-%m-%Y %H:%M") %></small>
-        </div>
       </div>
 
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div>
+      <small>
+        <strong>Added by: </strong><%= @movie.added_by.username %>
+        <strong> at: </strong><%= @movie.created_at.in_time_zone("Warsaw").strftime("%d-%m-%Y %H:%M") %>
+      </small>
+    </div>
+
+
+    <div><small>
+      <strong>Last updated by: </strong> <%= @movie.updated_by.username %>
+      <strong> at: </strong><%= @movie.updated_at.in_time_zone("Warsaw").strftime("%d-%m-%Y %H:%M") %></small>
     </div>
   </div>
 

@@ -75,11 +75,7 @@
           <div>
             <strong>Status:</strong>
             <%= Mymovie::STATUSES[@mymovie.status.to_s]  %>
-          </div>
-
-          <div>
-            <strong>Urgent:</strong>
-            <%= @mymovie.urgent %>
+            <%= @mymovie.urgent ? '(marked as urgent)' : '' %>
           </div>
 
           <% if @mymovie.watching_start %>
@@ -107,15 +103,17 @@
             <%= @mymovie.ranking %>
           </div>
 
-          <div>
-            <strong>Watching season:</strong>
-            <%= @mymovie.watching_season %>
-          </div>
+          <% if @mymovie.movie.movie_type == 2 %>
+            <div>
+              <strong>Watching season:</strong>
+              <%= @mymovie.watching_season %>
+            </div>
 
-          <div>
-            <strong>Last episode:</strong>
-            <%= @mymovie.last_episode %>
-          </div>
+            <div>
+              <strong>Last episode:</strong>
+              <%= @mymovie.last_episode %>
+            </div>
+          <% end %>
 
           <div>
             <strong>Impressions:</strong>

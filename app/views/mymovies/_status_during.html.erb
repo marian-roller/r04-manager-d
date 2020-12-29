@@ -28,7 +28,7 @@
               <%# end %>
 
               <% if mymovie.movie.image.attached? %>
-                <%= image_tag mymovie.movie.image, class: 'card-img-top' %>
+                <%= image_tag mymovie.movie.image, class: 'card-img-top border mb-1' %>
               <% else %>
                 <div class="image-replacement d-flex justify-content-center align-items-center">
                   <div class="text-light">
@@ -63,7 +63,7 @@
 
           <div class="col-2 p-0">
             <% if mymovie.movie.image.attached? %>
-              <%= image_tag mymovie.movie.image, class: 'card-img-top' %>
+              <%= image_tag mymovie.movie.image, class: 'card-img-top border' %>
             <% else %>
               <div class="image-replacement d-flex justify-content-center align-items-center bg-secondary h-100">
                 <div class="text-light">
