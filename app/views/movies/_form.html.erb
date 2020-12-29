@@ -48,10 +48,10 @@
               <%= select_tag('movie[movie_type]', options_for_select([['Movie', 1], ['Tv serie', 2]], movie.movie_type ) , class: "form-control form-control-sm #{'d-none' if controller.action_name == 'edit'}", :prompt => "-- Choose type --")  %>
               <% if controller.action_name == 'edit' %>
                 <div class="font-weight-bold small">
-                  <% if movie.movie_type == 1 %>
-                    Movie
+                  <% if movie.movie_type == Movie::TYPE_MOVIE %>
+                    <%= Movie::TYPES[Movie::TYPE_MOVIE.to_s] %>
                   <% else %>
-                    Tv serie
+                    <%= Movie::TYPES[Movie::TYPE_TVSERIE.to_s] %>
                   <% end %>
                 </div>
               <% end %>

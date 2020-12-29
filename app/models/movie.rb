@@ -18,6 +18,13 @@ class Movie < ApplicationRecord
   attr_accessor :remove_image
   after_save :purge_image
 
+  TYPE_MOVIE = 1
+  TYPE_TVSERIE = 2
+  TYPES = {
+    '1' => 'movie',
+    '2' => 'tvserie'
+  }
+
   def self.search(search, movie_type)
     if (search)
       if movie_type
