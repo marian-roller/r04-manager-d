@@ -24,8 +24,11 @@ export class imdbApi
 
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                instruction_container.innerText = "Choose the right poster";
-
+                instruction_container.classList.add('d-block');
+                instruction_container.innerText =
+                    "1. Find the right poster \n " +
+                    "2. Right-click the poster and save it to your machine \n" +
+                    "3. Click on 'Select new poster' button and upload saved poster";
                 posters_container.classList.remove('d-none');
                 posters_container.classList.add('d-flex');
                 let result = this.responseText
